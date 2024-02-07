@@ -1,12 +1,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    let columnLayout = Array(repeating:
+                                GridItem(), count: 2)
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        GeometryReader { geometry in
+            ScrollView {
+                LazyVGrid(columns: columnLayout) {
+                    CharacterCardView()
+                    CharacterCardView()
+                    CharacterCardView()
+                    CharacterCardView()
+                }
+            }
+            .padding()
         }
+        
     }
 }
