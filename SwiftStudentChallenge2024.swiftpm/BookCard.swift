@@ -1,14 +1,17 @@
 //
-//  CharacterCardView.swift
+//  BookCardView.swift
 //  SwiftStudentChallenge2024
 //
-//  Created by Eduardo Gonzalez Melgoza on 07/02/24.
+//  Created by Eduardo Gonzalez Melgoza on 08/02/24.
 //
 
 import SwiftUI
+import SwiftData
+@available(iOS 17, *)
 
-
-struct CharacterCardView: View {
+struct BookCard: View {
+    let book: Book
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
@@ -20,7 +23,7 @@ struct CharacterCardView: View {
                     .opacity(0.7)
                     .foregroundColor(.white)
                 VStack {
-                    Text("Robert Langdon")
+                    Text(book.title)
                         .foregroundColor(.white)
                         .padding()
                         .font(.system(size: 26))
