@@ -8,39 +8,27 @@ struct ContentView: View {
     
     @State private var isShowingItemSheet = false
     @State private var bookToEdit: Book?
+//    @Binding var color: Color
     
-    @Query(sort: \Book.title) var books: [Book]
+    @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     
     let columnLayout = Array(repeating:
                                 GridItem(), count: 2)
     
     var body: some View {
-        //        GeometryReader { geometry in
-        //            ScrollView {
-        //                LazyVGrid(columns: columnLayout) {
-        //                    CharacterCardView()
-        //                    CharacterCardView()
-        //                    CharacterCardView()
-        //                    CharacterCardView()
-        //                    CharacterCardView()
-        //                }
-        //            }
-        //            .padding()
-        //        }
-        
         NavigationStack {
-            List {
-                ForEach(books) { book in
-                    BookCard(book: book)
-                        .onTapGesture {
-                            bookToEdit = book
+            GeometryReader { geometry in
+                ScrollView {
+                    LazyVGrid(columns: columnLayout) {
+                        ForEach(books) { book in
+                            BookCard(book: book)
+                                .onTapGesture {
+                                    bookToEdit = book
+                                }
                         }
-                }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        context.delete(books[index])
                     }
                 }
+                .padding()
             }
             .navigationTitle("Books")
             .navigationBarTitleDisplayMode(.large)

@@ -12,11 +12,23 @@ import SwiftData
 struct BookCard: View {
     let book: Book
     
+//    @State private var color: Color?
+    
+    func formatDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
+    }
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .frame(height: 150)
-                .foregroundColor(.red)
+                .foregroundColor(convertStringToColor(bookColorString: book.bookColor))
+//                .onAppear{
+//                    self.color = self.convertStringToColor(bookColorString: book.bookColor)
+//                }
             HStack {
                 Image(systemName: "sun.max.fill")
                     .font(.system(size: 62))
@@ -28,11 +40,18 @@ struct BookCard: View {
                         .padding()
                         .font(.system(size: 26))
                         .bold()
+                    Text(book.bookColor)
+                    Text(formatDate(book.dateCreated))
                     Spacer()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading,30)
         }
+    }
+    
+    func convertStringToColor(bookColorString: String) -> Color {
+        let bookColor = Color.fromHex(bookColorString)
+        return bookColor
     }
 }

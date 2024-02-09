@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Foundation
 @available(iOS 17, *)
 
 struct AddBookSheet: View {
@@ -15,11 +16,21 @@ struct AddBookSheet: View {
     
     @State private var title: String = ""
     @State private var mainCharacters: String = ""
+    @State private var bookColor = Color.cyan
+    @State private var bookColorString = ""
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Book title", text: $title)
+                VStack {
+                    TextField("Book title", text: $title)
+                    ColorPicker(
+                        "Color",
+                        selection: $bookColor,
+                        supportsOpacity: false
+                    )
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationTitle("New book")
             .navigationBarTitleDisplayMode(.large)
@@ -29,13 +40,23 @@ struct AddBookSheet: View {
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
-                        let book = Book(title: title, mainCharacters: mainCharacters)
+                        self.bookColorString = self.convertColorToString(bookColor:bookColor)
+                        let book = Book(
+                            title: title,
+                            mainCharacters: mainCharacters,
+                            bookColor: bookColorString,
+                            dateCreated: Date())
                         context.insert(book)
                         dismiss()
                     }
                 }
             }
         }
+    }
+    
+    func convertColorToString(bookColor: Color) -> String{
+        let bookColorString = bookColor.toHex()
+        return bookColorString
     }
 }
 

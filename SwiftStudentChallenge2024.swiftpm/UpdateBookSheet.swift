@@ -21,6 +21,7 @@ struct UpdateBookSheet: View {
         NavigationStack {
             Form {
                 TextField("Book title", text: $book.title)
+//                ColorPicker("Color", selection: $bookColor)
             }
             .navigationTitle("Update book")
             .navigationBarTitleDisplayMode(.large)
