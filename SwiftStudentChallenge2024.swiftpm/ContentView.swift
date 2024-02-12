@@ -6,9 +6,9 @@ struct ContentView: View {
     
     @Environment(\.modelContext) private var context
     
-    @State private var isShowingItemSheet = false
+    @State private var showingAddBookSheet = false
+    @State private var showingBooksListSheet = false
     @State private var bookToEdit: Book?
-//    @Binding var color: Color
     
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     
@@ -32,14 +32,20 @@ struct ContentView: View {
             }
             .navigationTitle("Books")
             .navigationBarTitleDisplayMode(.large)
-            .sheet(isPresented: $isShowingItemSheet) { AddBookSheet() }
+            .sheet(isPresented: $showingAddBookSheet) { AddBookSheet() }
             .sheet(item: $bookToEdit) { book in
                 UpdateBookSheet(book: book)
             }
             .toolbar {
                 if !books.isEmpty {
+                    Button("Edit") {
+                        showingBooksListSheet.toggle()
+                    }
+                    .sheet(isPresented: $showingBooksListSheet) {
+                        BooksListView()
+                    }
                     Button("Add book", systemImage: "plus") {
-                        isShowingItemSheet = true
+                        showingAddBookSheet = true
                     }
                 }
             }
@@ -50,7 +56,7 @@ struct ContentView: View {
                     }, description: {
                         Text("Add some books to see them listed here.")
                     }, actions: {
-                        Button("Add book") { isShowingItemSheet = true }
+                        Button("Add book") { showingAddBookSheet = true }
                     })
                     .offset(y: -60)
                 }

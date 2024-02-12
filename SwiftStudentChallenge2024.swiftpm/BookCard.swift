@@ -12,7 +12,7 @@ import SwiftData
 struct BookCard: View {
     let book: Book
     
-//    @State private var color: Color?
+    //    @State private var color: Color?
     
     func formatDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -26,9 +26,6 @@ struct BookCard: View {
             RoundedRectangle(cornerRadius: 25)
                 .frame(height: 150)
                 .foregroundColor(convertStringToColor(bookColorString: book.bookColor))
-//                .onAppear{
-//                    self.color = self.convertStringToColor(bookColorString: book.bookColor)
-//                }
             HStack {
                 Image(systemName: "sun.max.fill")
                     .font(.system(size: 62))
@@ -47,6 +44,20 @@ struct BookCard: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading,30)
+        }
+        .swipeActions {
+            Text("Hi")
+        }
+        .contextMenu {
+            Button("Delete!") {
+                print("Deleting...")
+            }
+            Button(action: {
+                // Perform action 1
+            }) {
+                Label("Delete", systemImage: "trash")
+                    .foregroundStyle(.red)
+            }
         }
     }
     
