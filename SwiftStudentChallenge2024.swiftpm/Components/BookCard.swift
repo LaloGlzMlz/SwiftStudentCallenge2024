@@ -27,26 +27,22 @@ struct BookCard: View {
                 .frame(height: 150)
                 .foregroundColor(convertStringToColor(bookColorString: book.bookColor))
             HStack {
-                Image(systemName: "sun.max.fill")
-                    .font(.system(size: 62))
-                    .opacity(0.7)
-                    .foregroundColor(.white)
                 VStack {
                     Text(book.title)
                         .foregroundColor(.white)
-                        .padding()
-                        .font(.system(size: 26))
+                        .font(.system(size: 36))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
-                    Text(book.bookColor)
-                    Text(formatDate(book.dateCreated))
-                    Spacer()
+                        .padding()
+                    Text(book.author)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading,30)
-        }
-        .swipeActions {
-            Text("Hi")
         }
         .contextMenu {
             Button("Delete!") {

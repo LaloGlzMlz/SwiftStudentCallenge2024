@@ -8,28 +8,30 @@
 import SwiftUI
 
 
-struct CharacterCardView: View {
+struct CharacterCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .frame(height: 150)
                 .foregroundColor(.red)
             HStack {
-                Image(systemName: "sun.max.fill")
-                    .font(.system(size: 62))
-                    .opacity(0.7)
-                    .foregroundColor(.white)
+//                Image(systemName: "sun.max.fill")
+//                    .font(.system(size: 62))
+//                    .opacity(0.7)
+//                    .foregroundColor(.white)
                 VStack {
                     Text("Robert Langdon")
                         .foregroundColor(.white)
-                        .padding()
                         .font(.system(size: 26))
                         .bold()
+                        .padding()
                     Spacer()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading,30)
+//            .padding(.leading,30)
         }
     }
+    
+    
 }

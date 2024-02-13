@@ -15,6 +15,7 @@ struct AddBookSheet: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var title: String = ""
+    @State private var author: String = ""
     @State private var mainCharacters: String = ""
     @State private var bookColor = Color.cyan
     @State private var bookColorString = ""
@@ -24,6 +25,8 @@ struct AddBookSheet: View {
             Form {
                 VStack {
                     TextField("Book title", text: $title)
+                    TextField("Author", text: $author
+                    )
                     ColorPicker(
                         "Color",
                         selection: $bookColor,
@@ -43,6 +46,7 @@ struct AddBookSheet: View {
                         self.bookColorString = self.convertColorToString(bookColor:bookColor)
                         let book = Book(
                             title: title,
+                            author: author,
                             mainCharacters: mainCharacters,
                             bookColor: bookColorString,
                             dateCreated: Date())

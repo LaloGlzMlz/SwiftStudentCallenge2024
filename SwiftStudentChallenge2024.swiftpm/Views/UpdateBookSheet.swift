@@ -15,13 +15,13 @@ struct UpdateBookSheet: View {
     @Bindable var book: Book
     
     @State private var title: String = ""
-    @State private var mainCharacters: String = ""
+    @State private var author: String = ""
     
     var body: some View {
         NavigationStack {
             Form {
                 TextField("Book title", text: $book.title)
-//                ColorPicker("Color", selection: $bookColor)
+                TextField("Book title", text: $book.author)
             }
             .navigationTitle("Update book")
             .navigationBarTitleDisplayMode(.large)
