@@ -8,28 +8,41 @@
 import SwiftUI
 
 
+@available(iOS 17, *)
 struct CharacterCard: View {
+    let character: Character
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .frame(height: 150)
-                .foregroundColor(.red)
+                .foregroundColor(Color.blue)
             HStack {
-//                Image(systemName: "sun.max.fill")
+//                Image(systemName: book.icon)
 //                    .font(.system(size: 62))
 //                    .opacity(0.7)
 //                    .foregroundColor(.white)
                 VStack {
-                    Text("Robert Langdon")
+                    Text(character.name)
                         .foregroundColor(.white)
-                        .font(.system(size: 26))
+                        .font(.system(size: 28))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .padding()
-                    Spacer()
+                    Text(character.desc)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                    Text(character.book)
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-//            .padding(.leading,30)
+            .padding(.leading,30)
         }
     }
     

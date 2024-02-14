@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  CharacterModel.swift
+//
 //
 //  Created by Eduardo Gonzalez Melgoza on 13/02/24.
 //
@@ -12,9 +12,9 @@ import SwiftData
 
 @Model
 final class Character : Identifiable {
-    var name: String
-    var desc: String
-    var book: String
+    var name: String = ""
+    var desc: String = ""
+    var book: String = ""
     
     init(name: String, desc: String, book: String) {
         self.name = name

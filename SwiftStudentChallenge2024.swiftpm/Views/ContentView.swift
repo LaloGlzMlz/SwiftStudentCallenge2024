@@ -12,24 +12,20 @@ struct ContentView: View {
     
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     
-    let columnLayout = Array(repeating:
-                                GridItem(), count: 2)
+    let columnLayout = Array(repeating: GridItem(), count: 2)
     
     var body: some View {
         NavigationStack {
-            GeometryReader { geometry in
-                ScrollView {
-                    LazyVGrid(columns: columnLayout) {
-                        ForEach(books) { book in
+            ScrollView {
+                LazyVGrid(columns: columnLayout) {
+                    ForEach(books) { book in
+                        NavigationLink(destination: BookDetailView(book: book)) {
                             BookCard(book: book)
-                                .onTapGesture {
-                                    bookToEdit = book
-                                }
                         }
                     }
                 }
-                .padding()
             }
+            .padding()
             .navigationTitle("Books")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddBookSheet) { AddBookSheet() }

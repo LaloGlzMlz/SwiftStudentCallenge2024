@@ -12,25 +12,20 @@ import SwiftData
 struct BookCard: View {
     let book: Book
     
-    //    @State private var color: Color?
-    
-    func formatDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: date)
-    }
-    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .frame(height: 150)
                 .foregroundColor(convertStringToColor(bookColorString: book.bookColor))
             HStack {
+                Image(systemName: book.icon)
+                    .font(.system(size: 62))
+                    .opacity(0.7)
+                    .foregroundColor(.white)
                 VStack {
                     Text(book.title)
                         .foregroundColor(.white)
-                        .font(.system(size: 36))
+                        .font(.system(size: 28))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .padding()

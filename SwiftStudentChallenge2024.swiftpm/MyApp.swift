@@ -8,6 +8,6 @@ struct MyApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Book.self)
+        .modelContainer(for: [Book.self, Character.self])
     }
 }

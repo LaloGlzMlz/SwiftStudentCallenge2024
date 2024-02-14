@@ -16,24 +16,40 @@ struct AddBookSheet: View {
     
     @State private var title: String = ""
     @State private var author: String = ""
-    @State private var mainCharacters: String = ""
     @State private var bookColor = Color.cyan
     @State private var bookColorString = ""
+    @State private var icon = "star"
+    @State private var isPresented = false
     
     var body: some View {
         NavigationStack {
             Form {
-                VStack {
+                Section("Details") {
                     TextField("Book title", text: $title)
-                    TextField("Author", text: $author
-                    )
+                        .textInputAutocapitalization(.words)
+                    TextField("Author", text: $author)
+                        .textInputAutocapitalization(.words)
+                }
+                Section("Color") {
                     ColorPicker(
                         "Color",
                         selection: $bookColor,
                         supportsOpacity: false
                     )
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                Section("Icon") {
+                    Button(action: {
+                        isPresented.toggle()
+                    }) {
+                        Image(systemName: icon)
+                            .font(.title) // Adjust the font size if needed
+                            .sheet(isPresented: $isPresented, content: {
+                                SymbolsPicker(selection: $icon, title: "Pick a symbol", autoDismiss: true)
+                            })
+                            .foregroundColor(Color.black)
+                            .padding()
+                    }
+                }
             }
             .navigationTitle("New book")
             .navigationBarTitleDisplayMode(.large)
@@ -47,8 +63,8 @@ struct AddBookSheet: View {
                         let book = Book(
                             title: title,
                             author: author,
-                            mainCharacters: mainCharacters,
                             bookColor: bookColorString,
+                            icon: icon,
                             dateCreated: Date())
                         context.insert(book)
                         dismiss()

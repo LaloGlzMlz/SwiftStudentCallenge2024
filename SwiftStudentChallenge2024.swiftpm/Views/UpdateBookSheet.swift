@@ -16,13 +16,35 @@ struct UpdateBookSheet: View {
     
     @State private var title: String = ""
     @State private var author: String = ""
+    @State private var bookColor = Color.cyan
+    @State private var bookColorString = ""
+    @State private var icon = ""
+    @State private var isPresented = false
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Book title", text: $book.title)
-                TextField("Book title", text: $book.author)
+                Section("Details") {
+                    TextField("Book title", text: $book.title)
+                    TextField("Book title", text: $book.author)
+                }
+                Section("Icon") {
+                    Button(action: {
+                        isPresented.toggle()
+                    }) {
+                        Image(systemName: book.icon)
+                            .font(.title) // Adjust the font size if needed
+                            .sheet(isPresented: $isPresented, content: {
+                                SymbolsPicker(selection: $book.icon, title: "Pick a symbol", autoDismiss: true)
+                            })
+                            .foregroundColor(Color.black)
+                            .padding()
+                    }
+                }
             }
+            
+            
+            
             .navigationTitle("Update book")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
