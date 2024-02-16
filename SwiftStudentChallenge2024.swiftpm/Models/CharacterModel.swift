@@ -15,13 +15,15 @@ final class Character : Identifiable {
     var name: String = ""
     var desc: String = ""
     var book: String = ""
-//    var characterColor: String = ""
-//    var icon: String = ""
+    var characterColor: String = ""
+    var icon: String = ""
 //    var dateCreated: Date
     
-    init(name: String, desc: String, book: String) {
+    init(name: String, desc: String, book: String, characterColor: String, icon: String) {
         self.name = name
         self.desc = desc
         self.book = book
+        self.characterColor = characterColor
+        self.icon = icon
     }
 }

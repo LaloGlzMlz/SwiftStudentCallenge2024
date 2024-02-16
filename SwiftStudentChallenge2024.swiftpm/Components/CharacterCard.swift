@@ -16,12 +16,12 @@ struct CharacterCard: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .frame(height: 150)
-                .foregroundColor(Color.blue)
+                .foregroundColor(convertStringToColor(bookColorString: character.characterColor))
             HStack {
-//                Image(systemName: book.icon)
-//                    .font(.system(size: 62))
-//                    .opacity(0.7)
-//                    .foregroundColor(.white)
+                Image(systemName: character.icon)
+                    .font(.system(size: 62))
+                    .opacity(0.7)
+                    .foregroundColor(.white)
                 VStack {
                     Text(character.name)
                         .foregroundColor(.white)
@@ -34,7 +34,6 @@ struct CharacterCard: View {
                         .font(.system(size: 20))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
-                    
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

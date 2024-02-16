@@ -65,7 +65,8 @@ struct AddBookSheet: View {
                             author: author,
                             bookColor: bookColorString,
                             icon: icon,
-                            dateCreated: Date())
+                            dateCreated: Date()
+                        )
                         context.insert(book)
                         dismiss()
                     }

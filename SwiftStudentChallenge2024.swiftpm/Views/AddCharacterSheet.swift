@@ -17,7 +17,10 @@ struct AddCharacterSheet: View {
     
     @State private var name: String = ""
     @State private var desc: String = ""
-//    @State private var book: String = ""
+    @State private var characterColor = Color.cyan
+    @State private var characterColorString = ""
+    @State private var icon = "star"
+    @State private var isPresented = false
     let book : Book
     
     var body: some View {
@@ -29,6 +32,26 @@ struct AddCharacterSheet: View {
                     TextField("Description", text: $desc)
                         .textInputAutocapitalization(.words)
                 }
+                Section("Color") {
+                    ColorPicker(
+                        "Color",
+                        selection: $characterColor,
+                        supportsOpacity: false
+                    )
+                }
+                Section("Icon") {
+                    Button(action: {
+                        isPresented.toggle()
+                    }) {
+                        Image(systemName: icon)
+                            .font(.title) // Adjust the font size if needed
+                            .sheet(isPresented: $isPresented, content: {
+                                SymbolsPicker(selection: $icon, title: "Pick a symbol", autoDismiss: true)
+                            })
+                            .foregroundColor(Color.black)
+                            .padding()
+                    }
+                }
             }
             .navigationTitle("New book")
             .navigationBarTitleDisplayMode(.large)
@@ -38,10 +61,13 @@ struct AddCharacterSheet: View {
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
+                        self.characterColorString = self.convertColorToString(bookColor:characterColor)
                         let character = Character (
                             name: name,
                             desc: desc,
-                            book: book.title
+                            book: book.title,
+                            characterColor: characterColorString,
+                            icon: icon
                         )
                         context.insert(character)
                         dismiss()
