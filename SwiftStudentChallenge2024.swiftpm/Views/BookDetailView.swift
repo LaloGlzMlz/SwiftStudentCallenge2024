@@ -17,13 +17,6 @@ struct BookDetailView: View {
     
     @Query(sort: \Character.name) var characters: [Character]
     
-//    var filteredCharacters: [Character] {
-//        let filteredCharacters = characters.compactMap { character in
-//
-//        }
-//    }
-    
-    
     let columnLayout = Array(repeating: GridItem(), count: 2)
     let book: Book
     
