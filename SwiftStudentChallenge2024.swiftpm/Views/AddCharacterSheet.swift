@@ -17,7 +17,8 @@ struct AddCharacterSheet: View {
     
     @State private var name: String = ""
     @State private var desc: String = ""
-    @State private var book: String = ""
+//    @State private var book: String = ""
+    let book : Book
     
     var body: some View {
         NavigationStack {
@@ -40,7 +41,7 @@ struct AddCharacterSheet: View {
                         let character = Character (
                             name: name,
                             desc: desc,
-                            book: book
+                            book: book.title
                         )
                         context.insert(character)
                         dismiss()

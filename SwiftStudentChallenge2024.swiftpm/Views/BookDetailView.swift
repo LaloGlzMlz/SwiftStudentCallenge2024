@@ -13,34 +13,45 @@ struct BookDetailView: View {
     @Environment(\.modelContext) private var context
     
     @State private var showingAddCharacterSheet = false
+    @State private var showingCharactersListSheet = false
     
     @Query(sort: \Character.name) var characters: [Character]
+    
+//    var filteredCharacters: [Character] {
+//        let filteredCharacters = characters.compactMap { character in
+//
+//        }
+//    }
+    
     
     let columnLayout = Array(repeating: GridItem(), count: 2)
     let book: Book
     
+    
     var body: some View {
-        Text(book.title)
-        
-        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
                     ForEach(characters) { character in
-                        CharacterCard(character: character)
+                        if character.book == book.title {
+                            CharacterCard(character: character)
+                        }
                     }
                 }
             }
-            .sheet(isPresented: $showingAddCharacterSheet) { AddCharacterSheet() }
+            .padding()
+            .navigationTitle(book.title)
+            .navigationBarTitleDisplayMode(.large)
+            .sheet(isPresented: $showingAddCharacterSheet) { AddCharacterSheet(book: book) }
             .toolbar {
                 if !characters.isEmpty {
-//                    Button("Edit") {
-//                        showingBooksListSheet.toggle()
-//                    }
-//                    .sheet(isPresented: $showingBooksListSheet) {
-//                        BooksListView()
-//                    }
-                    Button("Add book", systemImage: "plus") {
+                    Button("Edit") {
+                        showingCharactersListSheet.toggle()
+                    }
+                    .sheet(isPresented: $showingCharactersListSheet) {
+                        CharactersListView()
+                    }
+                    Button("Add character", systemImage: "plus") {
                         showingAddCharacterSheet = true
                     }
                 }

@@ -34,11 +34,7 @@ struct CharacterCard: View {
                         .font(.system(size: 20))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
-                    Text(character.book)
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
+                    
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

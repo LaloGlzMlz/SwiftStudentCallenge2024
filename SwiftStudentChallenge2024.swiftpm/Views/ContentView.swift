@@ -29,9 +29,9 @@ struct ContentView: View {
             .navigationTitle("Books")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddBookSheet) { AddBookSheet() }
-            .sheet(item: $bookToEdit) { book in
-                UpdateBookSheet(book: book)
-            }
+//            .sheet(item: $bookToEdit) { book in
+//                UpdateBookSheet(book: book)
+//            }
             .toolbar {
                 if !books.isEmpty {
                     Button("Edit") {
