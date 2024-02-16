@@ -1,4 +1,6 @@
 import SwiftUI
+import SwiftData
+@available(iOS 17, *)
 
 @main
 struct MyApp: App {
@@ -6,5 +8,6 @@ struct MyApp: App {
         WindowGroup {
             ContentView()
         }
+        .modelContainer(for: [Book.self, Character.self])
     }
 }
