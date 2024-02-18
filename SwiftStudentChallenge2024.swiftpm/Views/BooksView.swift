@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 @available(iOS 17, *)
 
-struct ContentView: View {
+struct BooksView: View {
     
     @Environment(\.modelContext) private var context
     
@@ -17,7 +17,7 @@ struct ContentView: View {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
                     ForEach(books) { book in
-                        NavigationLink(destination: BookDetailView(book: book)) {
+                        NavigationLink(destination: CharactersView(book: book)) {
                             BookCard(book: book)
                         }
                     }

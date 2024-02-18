@@ -18,6 +18,8 @@ func convertColorToString(bookColor: Color) -> String{
     return bookColorString
 }
 
+// Switch between one and two columns view if iPad or otherwise is
+// executing the app
 var columnLayout: [GridItem] {
     if UIDevice.current.userInterfaceIdiom == .pad {
         return [GridItem(), GridItem()]

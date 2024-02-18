@@ -1,5 +1,5 @@
 //
-//  CharacterCardView.swift
+//  CharacterCard.swift
 //  SwiftStudentChallenge2024
 //
 //  Created by Eduardo Gonzalez Melgoza on 07/02/24.

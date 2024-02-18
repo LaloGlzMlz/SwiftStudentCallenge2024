@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  CharactersView.swift
 //  
 //
 //  Created by Eduardo Gonzalez Melgoza on 14/02/24.
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 @available(iOS 17, *)
 
-struct BookDetailView: View {
+struct CharactersView: View {
     @Environment(\.modelContext) private var context
     
     @State private var showingAddCharacterSheet = false

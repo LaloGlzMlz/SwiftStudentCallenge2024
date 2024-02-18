@@ -1,5 +1,5 @@
 //
-//  ColorFunctions.swift
+//  ColorExtension.swift
 //  SwiftStudentChallenge2024
 //
 //  Created by Eduardo Gonzalez Melgoza on 09/02/24.
