@@ -30,7 +30,6 @@ struct AddCharacterSheet: View {
                     TextField("Name", text: $name)
                         .textInputAutocapitalization(.words)
                     TextField("Description", text: $desc)
-                        .textInputAutocapitalization(.words)
                 }
                 Section("Color") {
                     ColorPicker(

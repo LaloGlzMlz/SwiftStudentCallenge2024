@@ -17,3 +17,11 @@ func convertColorToString(bookColor: Color) -> String{
     let bookColorString = bookColor.toHex()
     return bookColorString
 }
+
+var columnLayout: [GridItem] {
+    if UIDevice.current.userInterfaceIdiom == .pad {
+        return [GridItem(), GridItem()]
+    } else {
+        return [GridItem(.flexible())]
+    }
+}

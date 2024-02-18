@@ -12,8 +12,6 @@ struct ContentView: View {
     
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     
-    let columnLayout = Array(repeating: GridItem(), count: 2)
-    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -29,9 +27,6 @@ struct ContentView: View {
             .navigationTitle("Books")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddBookSheet) { AddBookSheet() }
-//            .sheet(item: $bookToEdit) { book in
-//                UpdateBookSheet(book: book)
-//            }
             .toolbar {
                 if !books.isEmpty {
                     Button("Edit") {

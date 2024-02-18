@@ -17,7 +17,7 @@ struct BookDetailView: View {
     
     @Query(sort: \Character.name) var characters: [Character]
     
-    let columnLayout = Array(repeating: GridItem(), count: 2)
+    let columnLayout = Array(repeating: GridItem(), count: 1)
     let book: Book
     
     
@@ -52,7 +52,7 @@ struct BookDetailView: View {
             .overlay {
                 if characters.isEmpty {
                     ContentUnavailableView(label: {
-                        Label("No characters added", systemImage: "list.bullet.rectangle.portrait")
+                        Label("No characters added", systemImage: "person")
                     }, description: {
                         Text("Add some characters to see them listed here.")
                     }, actions: {
