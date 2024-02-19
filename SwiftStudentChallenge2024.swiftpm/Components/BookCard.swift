@@ -39,17 +39,6 @@ struct BookCard: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading,30)
         }
-//        .contextMenu {
-//            Button("Delete!") {
-//                print("Deleting...")
-//            }
-//            Button(action: {
-//                // Perform action 1
-//            }) {
-//                Label("Delete", systemImage: "trash")
-//                    .foregroundStyle(.red)
-//            }
-//        }
     }
     
     func convertStringToColor(bookColorString: String) -> Color {

@@ -43,7 +43,7 @@ struct CharactersView: View {
                         showingCharacterListSheet.toggle()
                     }
                     .sheet(isPresented: $showingCharacterListSheet) {
-                        CharacterListView()
+                        CharacterListView(book: book)
                     }
                     Button("Add character", systemImage: "plus") {
                         showingAddCharacterSheet = true

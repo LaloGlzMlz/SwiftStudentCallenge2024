@@ -15,14 +15,18 @@ struct CharacterListView: View {
     @Query(sort: \Character.name) var characters: [Character]
     @State private var characterToEdit: Character?
     
+    let book: Book
+    
     var body: some View {
         List {
             Section("Swipe left to delete connections") {
                 ForEach(characters) { character in
-                    CharacterListCell(character: character)
-                        .onTapGesture {
-                            characterToEdit = character
-                        }
+                    if character.book == book.title {
+                        CharacterListCell(character: character)
+                            .onTapGesture {
+                                characterToEdit = character
+                            }
+                    }
                 }
                 .onDelete { indexSet in
                     for index in indexSet {

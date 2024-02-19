@@ -48,7 +48,7 @@ struct ConnectionsView: View {
                         showingConnectionListSheet.toggle()
                     }
                     .sheet(isPresented: $showingConnectionListSheet) {
-                        ConnectionListView()
+                        ConnectionListView(character: character)
                     }
                     Button("Add connection to character", systemImage: "plus") {
                         showingAddConnectionSheet = true

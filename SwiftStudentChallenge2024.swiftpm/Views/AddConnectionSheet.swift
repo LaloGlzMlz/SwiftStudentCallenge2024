@@ -36,10 +36,7 @@ struct AddConnectionSheet: View {
                         }
                     }
                     .pickerStyle(.menu)
-                    
-                    Text("Selected option: \(selectedOption)")
-                    
-                    
+//                    Text("Selected option: \(selectedOption)")
                     TextField("Is a/an to this character", text: $isTo)
                         .textInputAutocapitalization(.sentences)
                 }
