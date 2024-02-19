@@ -51,7 +51,7 @@ struct CharactersView: View {
                 }
             }
             .overlay {
-                if characters.isEmpty {
+                if !characters.contains(where: { $0.book == book.title }) {
                     ContentUnavailableView(label: {
                         Label("No characters added", systemImage: "person.3.fill")
                     }, description: {

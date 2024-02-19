@@ -56,7 +56,7 @@ struct ConnectionsView: View {
                 }
             }
             .overlay {
-                if connections.isEmpty {
+                if !connections.contains(where: { $0.thisCharacter == character.name }) {
                     ContentUnavailableView(label: {
                         Label("No connection to other characters added", systemImage: "person.line.dotted.person.fill")
                     }, description: {

@@ -21,7 +21,7 @@ struct ConnectionListView: View {
         List {
             Section("Swipe left to delete connections") {
                 ForEach(connections) { connection in
-                    if character.name == connection.thisCharacter {
+                    if character.name == connection.thisCharacter { // comment this condition to show all
                         ConnectionListCell(connection: connection)
                             .onTapGesture {
                                 connectionToEdit = connection

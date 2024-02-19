@@ -21,7 +21,7 @@ struct CharacterListView: View {
         List {
             Section("Swipe left to delete connections") {
                 ForEach(characters) { character in
-                    if character.book == book.title {
+                    if character.book == book.title { // comment this condition to show all
                         CharacterListCell(character: character)
                             .onTapGesture {
                                 characterToEdit = character

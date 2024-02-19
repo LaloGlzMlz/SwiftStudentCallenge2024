@@ -15,10 +15,8 @@ struct MyApp: App {
 /*
  To do:
  
- if all connections are not empty but only connections of one character are empty, show empty screen
- edit list show only list of that book
+ edit color and symbol for books and characters
  make names in color functions more general for any model
  make focused field change with tapping intro
- 
  
 */
