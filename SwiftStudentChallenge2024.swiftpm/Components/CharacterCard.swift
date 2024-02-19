@@ -18,13 +18,14 @@ struct CharacterCard: View {
                 .foregroundColor(convertStringToColor(bookColorString: character.characterColor))
             HStack {
                 Image(systemName: character.icon)
-                    .font(.system(size: 62))
+                    .font(.system(size: 60))
                     .opacity(0.7)
                     .foregroundColor(.white)
                 VStack {
                     Text(character.name)
+                        .lineLimit(1)
                         .foregroundColor(.white)
-                        .font(.system(size: 28))
+                        .font(.system(size: 26))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .padding()
@@ -34,6 +35,11 @@ struct CharacterCard: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
                 }
+                
+                Image(systemName: "chevron.right")
+                        .foregroundColor(.white)
+                        .font(.system(size: 20))
+                        .padding(.trailing, 20)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading,30)

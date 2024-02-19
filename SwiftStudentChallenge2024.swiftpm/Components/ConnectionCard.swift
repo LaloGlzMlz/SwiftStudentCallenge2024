@@ -25,8 +25,9 @@ struct ConnectionCard: View {
                     .foregroundColor(.white)
                 VStack {
                     Text(character.name)
+                        .lineLimit(1)
                         .foregroundColor(.white)
-                        .font(.system(size: 28))
+                        .font(.system(size: 26))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .padding()
