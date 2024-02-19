@@ -18,7 +18,7 @@ struct AddBookSheet: View {
     @State private var author: String = ""
     @State private var bookColor = Color.cyan
     @State private var bookColorString = ""
-    @State private var icon = "star"
+    @State private var icon = "text.book.closed.fill"
     @State private var isPresented = false
     
     var body: some View {

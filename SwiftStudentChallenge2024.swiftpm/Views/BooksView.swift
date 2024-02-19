@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 @available(iOS 17, *)
 
-struct ContentView: View {
+struct BooksView: View {
     
     @Environment(\.modelContext) private var context
     
@@ -12,14 +12,12 @@ struct ContentView: View {
     
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     
-    let columnLayout = Array(repeating: GridItem(), count: 2)
-    
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
                     ForEach(books) { book in
-                        NavigationLink(destination: BookDetailView(book: book)) {
+                        NavigationLink(destination: CharactersView(book: book)) {
                             BookCard(book: book)
                         }
                     }
@@ -29,16 +27,13 @@ struct ContentView: View {
             .navigationTitle("Books")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddBookSheet) { AddBookSheet() }
-//            .sheet(item: $bookToEdit) { book in
-//                UpdateBookSheet(book: book)
-//            }
             .toolbar {
                 if !books.isEmpty {
                     Button("Edit") {
                         showingBooksListSheet.toggle()
                     }
                     .sheet(isPresented: $showingBooksListSheet) {
-                        BooksListView()
+                        BookListView()
                     }
                     Button("Add book", systemImage: "plus") {
                         showingAddBookSheet = true
@@ -48,7 +43,7 @@ struct ContentView: View {
             .overlay {
                 if books.isEmpty {
                     ContentUnavailableView(label: {
-                        Label("No books added", systemImage: "list.bullet.rectangle.portrait")
+                        Label("No books added", systemImage: "book.closed.fill")
                     }, description: {
                         Text("Add some books to see them listed here.")
                     }, actions: {

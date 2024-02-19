@@ -1,15 +1,17 @@
 //
-//  CharacterCard.swift
-//  SwiftStudentChallenge2024
+//  ConnectionCard.swift
 //
-//  Created by Eduardo Gonzalez Melgoza on 07/02/24.
+//
+//  Created by Eduardo Gonzalez Melgoza on 19/02/24.
 //
 
 import SwiftUI
 @available(iOS 17, *)
 
-struct CharacterCard: View {
-    let character: Character
+struct ConnectionCard: View {
+    let book: Book
+    let character: Character // character to send: connected character
+    let connection: Connection
     
     var body: some View {
         ZStack {
@@ -28,7 +30,7 @@ struct CharacterCard: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
                         .padding()
-                    Text(character.desc)
+                    Text(connection.isTo)
                         .foregroundColor(.white)
                         .font(.system(size: 20))
                         .frame(maxWidth: .infinity, alignment: .leading)

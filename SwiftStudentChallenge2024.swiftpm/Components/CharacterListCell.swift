@@ -1,6 +1,6 @@
 //
-//  SwiftUIView.swift
-//  
+//  CharacterListCell.swift
+//
 //
 //  Created by Eduardo Gonzalez Melgoza on 15/02/24.
 //

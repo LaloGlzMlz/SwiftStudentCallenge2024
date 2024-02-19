@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  CharactersView.swift
 //  
 //
 //  Created by Eduardo Gonzalez Melgoza on 14/02/24.
@@ -9,15 +9,14 @@ import SwiftUI
 import SwiftData
 @available(iOS 17, *)
 
-struct BookDetailView: View {
+struct CharactersView: View {
     @Environment(\.modelContext) private var context
     
     @State private var showingAddCharacterSheet = false
-    @State private var showingCharactersListSheet = false
+    @State private var showingCharacterListSheet = false
     
     @Query(sort: \Character.name) var characters: [Character]
     
-    let columnLayout = Array(repeating: GridItem(), count: 2)
     let book: Book
     
     
@@ -27,7 +26,9 @@ struct BookDetailView: View {
                 LazyVGrid(columns: columnLayout) {
                     ForEach(characters) { character in
                         if character.book == book.title {
-                            CharacterCard(character: character)
+                            NavigationLink(destination: ConnectionsView(character: character, book: book)) {
+                                    CharacterCard(character: character)
+                            }
                         }
                     }
                 }
@@ -39,10 +40,10 @@ struct BookDetailView: View {
             .toolbar {
                 if !characters.isEmpty {
                     Button("Edit") {
-                        showingCharactersListSheet.toggle()
+                        showingCharacterListSheet.toggle()
                     }
-                    .sheet(isPresented: $showingCharactersListSheet) {
-                        CharactersListView()
+                    .sheet(isPresented: $showingCharacterListSheet) {
+                        CharacterListView()
                     }
                     Button("Add character", systemImage: "plus") {
                         showingAddCharacterSheet = true
@@ -52,7 +53,7 @@ struct BookDetailView: View {
             .overlay {
                 if characters.isEmpty {
                     ContentUnavailableView(label: {
-                        Label("No characters added", systemImage: "list.bullet.rectangle.portrait")
+                        Label("No characters added", systemImage: "person.3.fill")
                     }, description: {
                         Text("Add some characters to see them listed here.")
                     }, actions: {
