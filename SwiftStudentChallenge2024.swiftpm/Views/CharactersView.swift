@@ -13,11 +13,10 @@ struct CharactersView: View {
     @Environment(\.modelContext) private var context
     
     @State private var showingAddCharacterSheet = false
-    @State private var showingCharactersListSheet = false
+    @State private var showingCharacterListSheet = false
     
     @Query(sort: \Character.name) var characters: [Character]
     
-    let columnLayout = Array(repeating: GridItem(), count: 1)
     let book: Book
     
     
@@ -27,7 +26,9 @@ struct CharactersView: View {
                 LazyVGrid(columns: columnLayout) {
                     ForEach(characters) { character in
                         if character.book == book.title {
-                            CharacterCard(character: character)
+                            NavigationLink(destination: ConnectionsView(character: character, book: book)) {
+                                    CharacterCard(character: character)
+                            }
                         }
                     }
                 }
@@ -39,10 +40,10 @@ struct CharactersView: View {
             .toolbar {
                 if !characters.isEmpty {
                     Button("Edit") {
-                        showingCharactersListSheet.toggle()
+                        showingCharacterListSheet.toggle()
                     }
-                    .sheet(isPresented: $showingCharactersListSheet) {
-                        CharactersListView()
+                    .sheet(isPresented: $showingCharacterListSheet) {
+                        CharacterListView()
                     }
                     Button("Add character", systemImage: "plus") {
                         showingAddCharacterSheet = true
@@ -52,7 +53,7 @@ struct CharactersView: View {
             .overlay {
                 if characters.isEmpty {
                     ContentUnavailableView(label: {
-                        Label("No characters added", systemImage: "person")
+                        Label("No characters added", systemImage: "person.3.fill")
                     }, description: {
                         Text("Add some characters to see them listed here.")
                     }, actions: {

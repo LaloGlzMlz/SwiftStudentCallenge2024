@@ -21,7 +21,7 @@ struct AddCharacterSheet: View {
     @State private var characterColorString = ""
     @State private var icon = "person.fill"
     @State private var isPresented = false
-    let book : Book
+    let book: Book
     
     var body: some View {
         NavigationStack {
@@ -30,6 +30,7 @@ struct AddCharacterSheet: View {
                     TextField("Name", text: $name)
                         .textInputAutocapitalization(.words)
                     TextField("Description", text: $desc)
+                        .textInputAutocapitalization(.sentences)
                 }
                 Section("Color") {
                     ColorPicker(
@@ -52,7 +53,7 @@ struct AddCharacterSheet: View {
                     }
                 }
             }
-            .navigationTitle("New book")
+            .navigationTitle("New character")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {

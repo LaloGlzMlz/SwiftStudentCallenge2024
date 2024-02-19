@@ -33,7 +33,7 @@ struct BooksView: View {
                         showingBooksListSheet.toggle()
                     }
                     .sheet(isPresented: $showingBooksListSheet) {
-                        BooksListView()
+                        BookListView()
                     }
                     Button("Add book", systemImage: "plus") {
                         showingAddBookSheet = true
@@ -43,7 +43,7 @@ struct BooksView: View {
             .overlay {
                 if books.isEmpty {
                     ContentUnavailableView(label: {
-                        Label("No books added", systemImage: "list.bullet.rectangle.portrait")
+                        Label("No books added", systemImage: "book.closed.fill")
                     }, description: {
                         Text("Add some books to see them listed here.")
                     }, actions: {

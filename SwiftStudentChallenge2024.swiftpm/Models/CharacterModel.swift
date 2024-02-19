@@ -17,7 +17,6 @@ final class Character : Identifiable {
     var book: String = ""
     var characterColor: String = ""
     var icon: String = ""
-//    var dateCreated: Date
     
     init(name: String, desc: String, book: String, characterColor: String, icon: String) {
         self.name = name

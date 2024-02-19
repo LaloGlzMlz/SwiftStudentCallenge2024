@@ -8,6 +8,15 @@ struct MyApp: App {
         WindowGroup {
             BooksView()
         }
-        .modelContainer(for: [Book.self, Character.self])
+        .modelContainer(for: [Book.self, Character.self, Connection.self])
     }
 }
+
+/*
+ To do:
+ 
+ make names in color functions more general for any model
+ make focused field change with tapping intro
+ 
+ 
+*/
