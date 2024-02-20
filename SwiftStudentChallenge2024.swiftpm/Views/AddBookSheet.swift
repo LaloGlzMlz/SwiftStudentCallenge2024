@@ -8,7 +8,6 @@
 import SwiftUI
 import SwiftData
 import Foundation
-@available(iOS 17, *)
 
 struct AddBookSheet: View {
     @Environment(\.modelContext) private var context
@@ -25,14 +24,23 @@ struct AddBookSheet: View {
         NavigationStack {
             Form {
                 Section("Details") {
-                    TextField("Book title", text: $title)
-                        .textInputAutocapitalization(.words)
-                    TextField("Author", text: $author)
-                        .textInputAutocapitalization(.words)
+                    LabeledContent {
+                      TextField("Book title", text: $title)
+                    } label: {
+                      Text("Book title")
+                            .padding(.trailing)
+                    }
+                    
+                    LabeledContent {
+                      TextField("Author", text: $author)
+                    } label: {
+                      Text("Author")
+                            .padding(.trailing)
+                    }
                 }
                 Section("Color") {
                     ColorPicker(
-                        "Color",
+                        "Color (Color cannot be changed later)",
                         selection: $bookColor,
                         supportsOpacity: false
                     )

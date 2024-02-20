@@ -8,7 +8,6 @@ struct BooksView: View {
     
     @State private var showingAddBookSheet = false
     @State private var showingBooksListSheet = false
-    @State private var bookToEdit: Book?
     
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     

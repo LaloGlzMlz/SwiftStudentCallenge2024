@@ -15,14 +15,14 @@ struct ConnectionsView: View {
     @State private var showingAddConnectionSheet = false
     @State private var showingConnectionListSheet = false
     
-    @Query(sort: \Connection.thisCharacter) var connections: [Connection]
+    @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
     @Query(sort: \Character.name) var allCharacters: [Character]
     
     let character: Character
     let book: Book
     
     var body: some View {
-        let plusImage = Image(systemName: "plus").resizable()
+        let plusImage = Image(systemName: "plus").resizable() // prefedine icon to load from beginning
         
         NavigationStack {
             ScrollView {
@@ -41,7 +41,7 @@ struct ConnectionsView: View {
                 }
             }
             .padding()
-            .navigationTitle("\(character.name) - connections")
+            .navigationTitle(character.name)
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddConnectionSheet) { AddConnectionSheet(character: character, book: book) }
             .toolbar {

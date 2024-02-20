@@ -14,22 +14,35 @@ struct BookListView: View {
     
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     @State private var bookToEdit: Book?
+    @State private var isEditing = false
     
     var body: some View {
         List {
-            Section("Swipe left to delete connections") {
+            Section("Swipe left to edit or delete connections") {
                 ForEach(books) { book in
                     BookListCell(book: book)
-                        .onTapGesture {
-                            bookToEdit = book
+                        .swipeActions {
+                            Button("Delete", role: .destructive) {
+                                context.delete(book)
+                            }
+                            
+                            Button("Edit") {
+                                // Perform action 1
+                                bookToEdit = book
+                                isEditing = true
+                            }
+                            .tint(.yellow)
                         }
                 }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        context.delete(books[index])
-                    }
-                }
             }
+        }
+        .sheet(item: $bookToEdit, onDismiss: {
+            if isEditing {
+                // Show update sheet when yellow edit button is tapped
+                isEditing = false // Reset the flag
+            }
+        }) { book in
+            UpdateBookView(book: book)
         }
     }
 }

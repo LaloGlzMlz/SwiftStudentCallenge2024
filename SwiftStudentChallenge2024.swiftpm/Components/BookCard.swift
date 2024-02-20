@@ -37,7 +37,7 @@ struct BookCard: View {
                 .foregroundStyle(LinearGradient(
                     gradient: Gradient(stops: [
                         .init(color: convertStringToColor(bookColorString: book.bookColor), location: 0.0),
-                        .init(color: Color.black, location: 7.0)
+                        .init(color: Color.black, location: 3.0)
                     ]),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing

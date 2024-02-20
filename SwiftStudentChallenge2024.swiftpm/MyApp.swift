@@ -15,8 +15,9 @@ struct MyApp: App {
 /*
  To do:
  
- edit color and symbol for books and characters
+ edit color and symbol for books and characters from listviews
  make names in color functions more general for any model
  make focused field change with tapping intro
+ add main character field to display main characters before others
  
 */

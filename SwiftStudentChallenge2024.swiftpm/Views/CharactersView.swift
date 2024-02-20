@@ -12,16 +12,17 @@ import SwiftData
 struct CharactersView: View {
     @Environment(\.modelContext) private var context
     
+    @Query(sort: \Character.name) var characters: [Character]
+    
     @State private var showingAddCharacterSheet = false
     @State private var showingCharacterListSheet = false
-    
-    @Query(sort: \Character.name) var characters: [Character]
+    @State private var filteredCharacters: [Character] = []
     
     let book: Book
     
     
     var body: some View {
-        let plusImage = Image(systemName: "plus").resizable()
+        let plusImage = Image(systemName: "plus").resizable() // prefedine icon to load from beginning
         
         NavigationStack {
             ScrollView {
@@ -36,7 +37,7 @@ struct CharactersView: View {
                 }
             }
             .padding()
-            .navigationTitle("\(book.title) - characters")
+            .navigationTitle(book.title)
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddCharacterSheet) { AddCharacterSheet(book: book) }
             .toolbar {
@@ -67,6 +68,9 @@ struct CharactersView: View {
                     .offset(y: -60)
                 }
             }
+        }
+        .onAppear {
+            filteredCharacters = characters.filter{$0.book == book.title}
         }
     }
 }
