@@ -20,7 +20,7 @@ struct CharacterListView: View {
     
     var body: some View {
         List {
-            Section("Swipe left to delete connections") {
+            Section("Swipe left to edit or delete characters") {
                 ForEach(characters) { character in
                     if character.book == book.title { // comment this condition to show all
                         CharacterListCell(character: character)
