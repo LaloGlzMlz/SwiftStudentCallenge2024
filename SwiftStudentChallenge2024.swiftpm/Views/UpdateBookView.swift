@@ -20,33 +20,41 @@ struct UpdateBookView: View {
         
         NavigationStack {
             Form {
-                Section("Details") {
+                Section {
                     LabeledContent {
                         TextField("Book title", text: $book.title)
+                            .textInputAutocapitalization(.words)
                     } label: {
                       Text("Book title")
-                            .padding(.trailing)
+                            .padding(.trailing, 50)
                     }
                     
                     LabeledContent {
                         TextField("Author", text: $book.author)
+                            .textInputAutocapitalization(.words)
                     } label: {
                       Text("Author")
-                            .padding(.trailing)
+                            .padding(.trailing, 70)
                     }
                 }
                 
-                Section("Icon") {
-                    Button(action: {
-                        isPresented.toggle()
-                    }) {
-                        Image(systemName: book.icon)
-                            .font(.title) // Adjust the font size if needed
-                            .sheet(isPresented: $isPresented, content: {
-                                SymbolsPicker(selection: $book.icon, title: "Pick a symbol", autoDismiss: true)
-                            })
-                            .foregroundStyle(Color.black)
-                            .padding()
+                Section {
+                    LabeledContent {
+                        Button(action: {
+                            isPresented.toggle()
+                        }) {
+                            Image(systemName: book.icon)
+                                .font(.title)
+                                .sheet(isPresented: $isPresented, content: {
+                                    SymbolsPicker(selection: $book.icon, title: "Pick a symbol", autoDismiss: true)
+                                })
+                                .foregroundStyle(Color.black)
+                        }
+                        .padding(.top, 5)
+                        .padding(.bottom, 5)
+                    } label: {
+                      Text("Icon")
+                            .padding(.trailing)
                     }
                 }
             }

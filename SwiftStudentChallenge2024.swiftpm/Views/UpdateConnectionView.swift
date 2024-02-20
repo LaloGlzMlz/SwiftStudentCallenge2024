@@ -20,8 +20,13 @@ struct UpdateConnectionView: View {
         NavigationStack {
             Form {
                 Section() {
-                    TextField("is a/an to this character", text: $connection.isTo)
-                        .textInputAutocapitalization(.sentences)
+                    LabeledContent {
+                        TextField("Connection type", text: $connection.isTo)
+                            .textInputAutocapitalization(.sentences)
+                    } label: {
+                      Text("Connection type")
+                            .padding(.trailing, 50)
+                    }
                 }
             }
             .navigationTitle("Editing connection with \(connection.relatedCharacter)")

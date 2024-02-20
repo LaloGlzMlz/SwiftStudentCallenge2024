@@ -28,19 +28,7 @@ struct AddConnectionSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section() {
-                    Picker("Select a character that is related to \(character.name)", selection: $selectedOption) {
-                        ForEach(filteredCharacters) { character in
-                            Text(character.name).tag(character.name)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                    
-                    TextField("is a/an to this character", text: $isTo)
-                        .textInputAutocapitalization(.sentences)
-                }
-                
-                Section() {
+                Section {
                     Text("The character ") +
                     Text("\(selectedOption) ").bold() +
                     Text("is ") +
@@ -48,6 +36,32 @@ struct AddConnectionSheet: View {
                     Text("'s ") +
                     Text("\(isTo.lowercased())").bold()
                 }
+                
+                Section {
+                    Picker("Select a character that is related to \(character.name)", selection: $selectedOption) {
+                        ForEach(filteredCharacters) { character in
+                            Text(character.name).tag(character.name)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    
+                    LabeledContent {
+                      TextField("Connection type", text: $isTo)
+                            .textInputAutocapitalization(.sentences)
+                    } label: {
+                      Text("Connection type")
+                            .padding(.trailing, 50)
+                    }
+                }
+                
+//                Section {
+//                    Text("The character ") +
+//                    Text("\(selectedOption) ").bold() +
+//                    Text("is ") +
+//                    Text("\(character.name)").bold() +
+//                    Text("'s ") +
+//                    Text("\(isTo.lowercased())").bold()
+//                }
             }
             .onAppear {
                 filteredCharacters = characters.filter{$0.book == book.title}

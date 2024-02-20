@@ -26,30 +26,51 @@ struct AddCharacterSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Details") {
-                    TextField("Name", text: $name)
-                        .textInputAutocapitalization(.words)
-                    TextField("Description", text: $desc)
-                        .textInputAutocapitalization(.sentences)
+                Section {
+                    LabeledContent {
+                      TextField("Character name", text: $name)
+                            .textInputAutocapitalization(.words)
+                    } label: {
+                      Text("Name")
+                            .padding(.trailing, 94)
+                    }
+                    
+                    LabeledContent {
+                      TextField("Character description", text: $desc)
+                            .textInputAutocapitalization(.sentences)
+                    } label: {
+                      Text("Description")
+                            .padding(.trailing, 50)
+                    }
                 }
-                Section("Color") {
+                
+                Section {
                     ColorPicker(
-                        "Color",
+                        "Color (color cannot be changed later)",
                         selection: $characterColor,
                         supportsOpacity: false
                     )
+                    .padding(.top, 5)
+                    .padding(.bottom, 5)
                 }
-                Section("Icon") {
-                    Button(action: {
-                        isPresented.toggle()
-                    }) {
-                        Image(systemName: icon)
-                            .font(.title) // Adjust the font size if needed
-                            .sheet(isPresented: $isPresented, content: {
-                                SymbolsPicker(selection: $icon, title: "Pick a symbol", autoDismiss: true)
-                            })
-                            .foregroundStyle(Color.black)
-                            .padding()
+                
+                Section {
+                    LabeledContent {
+                        Button(action: {
+                            isPresented.toggle()
+                        }) {
+                            Image(systemName: icon)
+                                .font(.title)
+                                .sheet(isPresented: $isPresented, content: {
+                                    SymbolsPicker(selection: $icon, title: "Pick a symbol", autoDismiss: true)
+                                })
+                                .foregroundStyle(Color.black)
+                        }
+                        .padding(.top, 5)
+                        .padding(.bottom, 5)
+                    } label: {
+                      Text("Icon")
+                            .padding(.trailing)
                     }
                 }
             }

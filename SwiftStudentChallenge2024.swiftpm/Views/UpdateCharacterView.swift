@@ -19,25 +19,54 @@ struct UpdateCharacterView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Details") {
-                    TextField("Name", text: $character.name)
-                        .textInputAutocapitalization(.words)
-                    TextField("Description", text: $character.desc)
-                        .textInputAutocapitalization(.sentences)
+                Section {
+                    LabeledContent {
+                        TextField("Character name", text: $character.name)
+                            .textInputAutocapitalization(.words)
+                    } label: {
+                      Text("Name")
+                            .padding(.trailing, 114)
+                    }
+                    
+                    LabeledContent {
+                        TextField("Character description", text: $character.desc)
+                            .textInputAutocapitalization(.sentences)
+                    } label: {
+                      Text("Description")
+                            .padding(.trailing, 70)
+                    }
                 }
                 
-                Section("Icon") {
-                    Button(action: {
-                        isPresented.toggle()
-                    }) {
-                        Image(systemName: character.icon)
-                            .font(.title) // Adjust the font size if needed
-                            .sheet(isPresented: $isPresented, content: {
-                                SymbolsPicker(selection: $character.icon, title: "Pick a symbol", autoDismiss: true)
-                            })
-                            .foregroundStyle(Color.black)
-                            .padding()
+                Section {
+                    LabeledContent {
+                        Button(action: {
+                            isPresented.toggle()
+                        }) {
+                            Image(systemName: character.icon)
+                                .font(.title)
+                                .sheet(isPresented: $isPresented, content: {
+                                    SymbolsPicker(selection: $character.icon, title: "Pick a symbol", autoDismiss: true)
+                                })
+                                .foregroundStyle(Color.black)
+                        }
+                        .padding(.top, 5)
+                        .padding(.bottom, 5)
+                    } label: {
+                      Text("Icon")
+                            .padding(.trailing)
                     }
+                    
+//                    Button(action: {
+//                        isPresented.toggle()
+//                    }) {
+//                        Image(systemName: character.icon)
+//                            .font(.title) // Adjust the font size if needed
+//                            .sheet(isPresented: $isPresented, content: {
+//                                SymbolsPicker(selection: $character.icon, title: "Pick a symbol", autoDismiss: true)
+//                            })
+//                            .foregroundStyle(Color.black)
+//                            .padding()
+//                    }
                 }
             }
             .navigationTitle("Editing \(character.name)")
