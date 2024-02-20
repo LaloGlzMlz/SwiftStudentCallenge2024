@@ -27,7 +27,6 @@ struct BookListView: View {
                             }
                             
                             Button("Edit") {
-                                // Perform action 1
                                 bookToEdit = book
                                 isEditing = true
                             }

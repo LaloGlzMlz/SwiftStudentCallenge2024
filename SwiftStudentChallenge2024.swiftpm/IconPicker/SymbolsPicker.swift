@@ -73,8 +73,8 @@ public struct SymbolsPicker: View {
             }.padding(.horizontal, 5)
         }
         
-        .onChange(of: selection) { newValue in
-            if(autoDismiss) {
+        .onReceive(selection.publisher) { _ in
+            if autoDismiss {
                 presentationMode.wrappedValue.dismiss()
             }
         }

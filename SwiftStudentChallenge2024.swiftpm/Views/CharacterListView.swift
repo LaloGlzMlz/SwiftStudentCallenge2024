@@ -14,6 +14,7 @@ struct CharacterListView: View {
     
     @Query(sort: \Character.name) var characters: [Character]
     @State private var characterToEdit: Character?
+    @State private var isEditing = false
     
     let book: Book
     
@@ -23,17 +24,28 @@ struct CharacterListView: View {
                 ForEach(characters) { character in
                     if character.book == book.title { // comment this condition to show all
                         CharacterListCell(character: character)
-                            .onTapGesture {
-                                characterToEdit = character
+                            .swipeActions {
+                                Button("Delete", role: .destructive) {
+                                    context.delete(character)
+                                }
+                                
+                                Button("Edit") {
+                                    characterToEdit = character
+                                    isEditing = true
+                                }
+                                .tint(.yellow)
                             }
                     }
                 }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        context.delete(characters[index])
-                    }
-                }
             }
+        }
+        .sheet(item: $characterToEdit, onDismiss: {
+            if isEditing {
+                // Show update sheet when yellow edit button is tapped
+                isEditing = false // Reset the flag
+            }
+        }) { character in
+            UpdateCharacterView(character: character)
         }
     }
 }

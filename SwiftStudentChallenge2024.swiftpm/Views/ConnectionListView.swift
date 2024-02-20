@@ -14,6 +14,7 @@ struct ConnectionListView: View {
     
     @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
     @State private var connectionToEdit: Connection?
+    @State private var isEditing = false
     
     let character: Character
     
@@ -23,17 +24,28 @@ struct ConnectionListView: View {
                 ForEach(connections) { connection in
                     if character.name == connection.thisCharacter { // comment this condition to show all
                         ConnectionListCell(connection: connection)
-                            .onTapGesture {
-                                connectionToEdit = connection
+                            .swipeActions {
+                                Button("Delete", role: .destructive) {
+                                    context.delete(connection)
+                                }
+                                
+                                Button("Edit") {
+                                    connectionToEdit = connection
+                                    isEditing = true
+                                }
+                                .tint(.yellow)
                             }
                     }
                 }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        context.delete(connections[index])
-                    }
-                }
             }
+        }
+        .sheet(item: $connectionToEdit, onDismiss: {
+            if isEditing {
+                // Show update sheet when yellow edit button is tapped
+                isEditing = false // Reset the flag
+            }
+        }) { connection in
+            UpdateConnectionView(connection: connection)
         }
     }
 }
