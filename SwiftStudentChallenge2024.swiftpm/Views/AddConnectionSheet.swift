@@ -14,32 +14,44 @@ struct AddConnectionSheet: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     
+    @Query(sort: \Character.name) var characters: [Character]
+    
     @State private var relatedCharacter: String = ""
     @State private var isTo: String = ""
     @State private var selectedOption = ""
+    @State private var filteredCharacters: [Character] = []
     
     let character: Character
     let book: Book
-    
-    @Query(sort: \Character.name) var characters: [Character]
     
     
     var body: some View {
         NavigationStack {
             Form {
                 Section() {
-                    Picker("Select an option", selection: $selectedOption) {
-                        ForEach(characters) { character in
-                            if character.book == book.title {
-                                Text(character.name).tag(character.name)
-                            }
+                    Picker("Select a character that is related to \(character.name)", selection: $selectedOption) {
+                        ForEach(filteredCharacters) { character in
+                            Text(character.name).tag(character.name)
                         }
                     }
                     .pickerStyle(.menu)
-//                    Text("Selected option: \(selectedOption)")
-                    TextField("Is a/an to this character", text: $isTo)
+                    
+                    TextField("is a/an to this character", text: $isTo)
                         .textInputAutocapitalization(.sentences)
                 }
+                
+                Section() {
+                    Text("The character ") +
+                    Text("\(selectedOption) ").bold() +
+                    Text("is ") +
+                    Text("\(character.name)").bold() +
+                    Text("'s ") +
+                    Text("\(isTo.lowercased())").bold()
+                }
+            }
+            .onAppear {
+                filteredCharacters = characters.filter{$0.book == book.title}
+                selectedOption = filteredCharacters[0].name
             }
             .navigationTitle("New connection")
             .navigationBarTitleDisplayMode(.large)
@@ -59,9 +71,6 @@ struct AddConnectionSheet: View {
                     }
                 }
             }
-        }
-        .onAppear{
-            selectedOption = character.name
         }
     }
 }

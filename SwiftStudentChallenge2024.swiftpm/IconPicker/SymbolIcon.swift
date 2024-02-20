@@ -16,7 +16,7 @@ struct SymbolIcon: View {
         Image(systemName: icon)
             .font(.system(size: 25))
             .animation(.linear)
-            .foregroundColor(self.selection == icon ? Color.accentColor : Color.primary)
+            .foregroundStyle(self.selection == icon ? Color.accentColor : Color.primary)
             .onTapGesture {
                 
                 // Assign binding value

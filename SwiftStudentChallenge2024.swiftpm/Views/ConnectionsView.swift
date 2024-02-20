@@ -22,6 +22,8 @@ struct ConnectionsView: View {
     let book: Book
     
     var body: some View {
+        let plusImage = Image(systemName: "plus").resizable()
+        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
@@ -39,7 +41,7 @@ struct ConnectionsView: View {
                 }
             }
             .padding()
-            .navigationTitle(character.name)
+            .navigationTitle("\(character.name) - connections")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddConnectionSheet) { AddConnectionSheet(character: character, book: book) }
             .toolbar {
@@ -50,8 +52,11 @@ struct ConnectionsView: View {
                     .sheet(isPresented: $showingConnectionListSheet) {
                         ConnectionListView(character: character)
                     }
-                    Button("Add connection to character", systemImage: "plus") {
+                    Button(action: {
                         showingAddConnectionSheet = true
+                    }) {
+                        plusImage
+                            .frame(width: 18, height: 18)
                     }
                 }
             }

@@ -13,37 +13,59 @@ struct CharacterCard: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
+            
+            RoundedRectangle(cornerRadius: 20)
                 .frame(height: 150)
-                .foregroundColor(convertStringToColor(bookColorString: character.characterColor))
+                .foregroundStyle(.gray)
+                .offset(x: 10, y: 10)
+                .opacity(0.2)
+            
+            RoundedRectangle(cornerRadius: 20)
+                .frame(height: 150)
+                .foregroundStyle(.gray)
+                .offset(x: 5, y: 5)
+                .opacity(0.2)
+            
+            RoundedRectangle(cornerRadius: 20)
+                .frame(height: 150)
+                .foregroundStyle(LinearGradient(
+                    gradient: Gradient(stops: [
+                        .init(color: convertStringToColor(bookColorString: character.characterColor), location: 0.0),
+                        .init(color: Color.black, location: 7.0)
+                    ]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                ))
+            
             HStack {
                 Image(systemName: character.icon)
-                    .font(.system(size: 60))
+                    .font(.system(size: 55))
                     .opacity(0.7)
-                    .foregroundColor(.white)
+                    .foregroundStyle(.white)
                 VStack {
                     Text(character.name)
-                        .lineLimit(1)
-                        .foregroundColor(.white)
-                        .font(.system(size: 26))
+                        .lineLimit(2)
+                        .foregroundStyle(.white)
+                        .font(.title2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
-                        .padding()
+                        .padding(.leading, 15)
                     Text(character.desc)
-                        .foregroundColor(.white)
-                        .font(.system(size: 20))
+                        .foregroundStyle(.white)
+                        .font(.body)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
+                        .padding(.leading, 15)
                 }
                 
                 Image(systemName: "chevron.right")
-                        .foregroundColor(.white)
+                        .foregroundStyle(.white)
                         .font(.system(size: 20))
                         .padding(.trailing, 20)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading,30)
         }
+        .padding()
     }
     
     

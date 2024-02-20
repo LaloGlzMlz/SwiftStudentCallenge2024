@@ -13,6 +13,8 @@ struct BooksView: View {
     @Query(sort: \Book.dateCreated, order: .reverse) var books: [Book]
     
     var body: some View {
+        let plusImage = Image(systemName: "plus").resizable()
+        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
@@ -35,8 +37,11 @@ struct BooksView: View {
                     .sheet(isPresented: $showingBooksListSheet) {
                         BookListView()
                     }
-                    Button("Add book", systemImage: "plus") {
+                    Button(action: {
                         showingAddBookSheet = true
+                    }) {
+                        plusImage
+                            .frame(width: 18, height: 18)
                     }
                 }
             }

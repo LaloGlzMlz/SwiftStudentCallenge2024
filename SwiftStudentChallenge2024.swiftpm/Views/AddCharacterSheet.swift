@@ -48,7 +48,7 @@ struct AddCharacterSheet: View {
                             .sheet(isPresented: $isPresented, content: {
                                 SymbolsPicker(selection: $icon, title: "Pick a symbol", autoDismiss: true)
                             })
-                            .foregroundColor(Color.black)
+                            .foregroundStyle(Color.black)
                             .padding()
                     }
                 }

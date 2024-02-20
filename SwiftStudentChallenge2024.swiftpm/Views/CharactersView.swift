@@ -21,6 +21,8 @@ struct CharactersView: View {
     
     
     var body: some View {
+        let plusImage = Image(systemName: "plus").resizable()
+        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
@@ -34,7 +36,7 @@ struct CharactersView: View {
                 }
             }
             .padding()
-            .navigationTitle(book.title)
+            .navigationTitle("\(book.title) - characters")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $showingAddCharacterSheet) { AddCharacterSheet(book: book) }
             .toolbar {
@@ -45,8 +47,11 @@ struct CharactersView: View {
                     .sheet(isPresented: $showingCharacterListSheet) {
                         CharacterListView(book: book)
                     }
-                    Button("Add character", systemImage: "plus") {
+                    Button(action: {
                         showingAddCharacterSheet = true
+                    }) {
+                        plusImage
+                            .frame(width: 18, height: 18)
                     }
                 }
             }

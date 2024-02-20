@@ -37,7 +37,7 @@ struct UpdateBookSheet: View {
                             .sheet(isPresented: $isPresented, content: {
                                 SymbolsPicker(selection: $book.icon, title: "Pick a symbol", autoDismiss: true)
                             })
-                            .foregroundColor(Color.black)
+                            .foregroundStyle(Color.black)
                             .padding()
                     }
                 }
