@@ -1,31 +1,28 @@
 //
-//  AddBookSheet.swift
-//  SwiftStudentChallenge2024
+//  UpdateBookView.swift
 //
-//  Created by Eduardo Gonzalez Melgoza on 08/02/24.
+//
+//  Created by Eduardo Gonzalez Melgoza on 20/02/24.
 //
 
 import SwiftUI
 import SwiftData
 import Foundation
 
-struct AddBookSheet: View {
-    @Environment(\.modelContext) private var context
+struct UpdateBookView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @State private var title: String = ""
-    @State private var author: String = ""
-    @State private var bookColor = Color.blue
-    @State private var bookColorString = ""
-    @State private var icon = "text.book.closed.fill"
     @State private var isPresented = false
     
+    @Bindable var book: Book
+    
     var body: some View {
+        
         NavigationStack {
             Form {
                 Section {
                     LabeledContent {
-                      TextField("Book title", text: $title)
+                        TextField("Book title", text: $book.title)
                             .textInputAutocapitalization(.words)
                     } label: {
                       Text("Book title")
@@ -33,7 +30,7 @@ struct AddBookSheet: View {
                     }
                     
                     LabeledContent {
-                      TextField("Author", text: $author)
+                        TextField("Author", text: $book.author)
                             .textInputAutocapitalization(.words)
                     } label: {
                       Text("Author")
@@ -42,24 +39,14 @@ struct AddBookSheet: View {
                 }
                 
                 Section {
-                    ColorPicker(
-                        "Color (color cannot be changed later)",
-                        selection: $bookColor,
-                        supportsOpacity: false
-                    )
-                    .padding(.top, 5)
-                    .padding(.bottom, 5)
-                }
-                
-                Section {
                     LabeledContent {
                         Button(action: {
                             isPresented.toggle()
                         }) {
-                            Image(systemName: icon)
+                            Image(systemName: book.icon)
                                 .font(.title)
                                 .sheet(isPresented: $isPresented, content: {
-                                    SymbolsPicker(selection: $icon, title: "Pick a symbol", autoDismiss: true)
+                                    SymbolsPicker(selection: $book.icon, title: "Pick a symbol", autoDismiss: true)
                                 })
                                 .foregroundStyle(Color.black)
                         }
@@ -71,28 +58,15 @@ struct AddBookSheet: View {
                     }
                 }
             }
-            .navigationTitle("New book")
+            .navigationTitle("Editing \(book.title)")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
-                ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("Cancel") { dismiss() }
-                }
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Save") {
-                        self.bookColorString = self.convertColorToString(bookColor:bookColor)
-                        let book = Book(
-                            title: title,
-                            author: author,
-                            bookColor: bookColorString,
-                            icon: icon,
-                            dateCreated: Date()
-                        )
-                        context.insert(book)
-                        dismiss()
-                    }
+                    Button("Done") { dismiss() }
                 }
             }
         }
+        
     }
     
     func convertColorToString(bookColor: Color) -> String{
@@ -100,4 +74,3 @@ struct AddBookSheet: View {
         return bookColorString
     }
 }
-

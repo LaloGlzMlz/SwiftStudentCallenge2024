@@ -14,22 +14,38 @@ struct CharacterListView: View {
     
     @Query(sort: \Character.name) var characters: [Character]
     @State private var characterToEdit: Character?
+    @State private var isEditing = false
+    
+    let book: Book
     
     var body: some View {
         List {
             Section("Swipe left to delete connections") {
                 ForEach(characters) { character in
-                    CharacterListCell(character: character)
-                        .onTapGesture {
-                            characterToEdit = character
-                        }
-                }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        context.delete(characters[index])
+                    if character.book == book.title { // comment this condition to show all
+                        CharacterListCell(character: character)
+                            .swipeActions {
+                                Button("Delete", role: .destructive) {
+                                    context.delete(character)
+                                }
+                                
+                                Button("Edit") {
+                                    characterToEdit = character
+                                    isEditing = true
+                                }
+                                .tint(.yellow)
+                            }
                     }
                 }
             }
+        }
+        .sheet(item: $characterToEdit, onDismiss: {
+            if isEditing {
+                // Show update sheet when yellow edit button is tapped
+                isEditing = false // Reset the flag
+            }
+        }) { character in
+            UpdateCharacterView(character: character)
         }
     }
 }

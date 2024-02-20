@@ -12,15 +12,18 @@ import SwiftData
 struct CharactersView: View {
     @Environment(\.modelContext) private var context
     
+    @Query(sort: \Character.name) var characters: [Character]
+    
     @State private var showingAddCharacterSheet = false
     @State private var showingCharacterListSheet = false
-    
-    @Query(sort: \Character.name) var characters: [Character]
+    @State private var filteredCharacters: [Character] = []
     
     let book: Book
     
     
     var body: some View {
+        let plusImage = Image(systemName: "plus").resizable() // prefedine icon to load from beginning
+        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
@@ -43,15 +46,18 @@ struct CharactersView: View {
                         showingCharacterListSheet.toggle()
                     }
                     .sheet(isPresented: $showingCharacterListSheet) {
-                        CharacterListView()
+                        CharacterListView(book: book)
                     }
-                    Button("Add character", systemImage: "plus") {
+                    Button(action: {
                         showingAddCharacterSheet = true
+                    }) {
+                        plusImage
+                            .frame(width: 18, height: 18)
                     }
                 }
             }
             .overlay {
-                if characters.isEmpty {
+                if !characters.contains(where: { $0.book == book.title }) {
                     ContentUnavailableView(label: {
                         Label("No characters added", systemImage: "person.3.fill")
                     }, description: {
@@ -62,6 +68,9 @@ struct CharactersView: View {
                     .offset(y: -60)
                 }
             }
+        }
+        .onAppear {
+            filteredCharacters = characters.filter{$0.book == book.title}
         }
     }
 }

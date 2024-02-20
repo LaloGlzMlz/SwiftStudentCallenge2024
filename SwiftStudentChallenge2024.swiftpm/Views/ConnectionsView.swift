@@ -15,13 +15,15 @@ struct ConnectionsView: View {
     @State private var showingAddConnectionSheet = false
     @State private var showingConnectionListSheet = false
     
-    @Query(sort: \Connection.thisCharacter) var connections: [Connection]
+    @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
     @Query(sort: \Character.name) var allCharacters: [Character]
     
     let character: Character
     let book: Book
     
     var body: some View {
+        let plusImage = Image(systemName: "plus").resizable() // prefedine icon to load from beginning
+        
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columnLayout) {
@@ -48,15 +50,18 @@ struct ConnectionsView: View {
                         showingConnectionListSheet.toggle()
                     }
                     .sheet(isPresented: $showingConnectionListSheet) {
-                        ConnectionListView()
+                        ConnectionListView(character: character)
                     }
-                    Button("Add connection to character", systemImage: "plus") {
+                    Button(action: {
                         showingAddConnectionSheet = true
+                    }) {
+                        plusImage
+                            .frame(width: 18, height: 18)
                     }
                 }
             }
             .overlay {
-                if connections.isEmpty {
+                if !connections.contains(where: { $0.thisCharacter == character.name }) {
                     ContentUnavailableView(label: {
                         Label("No connection to other characters added", systemImage: "person.line.dotted.person.fill")
                     }, description: {
