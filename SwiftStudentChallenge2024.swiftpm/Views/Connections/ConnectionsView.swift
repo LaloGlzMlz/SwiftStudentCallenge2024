@@ -74,8 +74,4 @@ struct ConnectionsView: View {
             }
         }
     }
-    
-    //    func filterConnections() {
-    //
-    //    }
 }

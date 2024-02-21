@@ -15,6 +15,7 @@ struct MyApp: App {
 /*
  To do:
  
+ cascade modification when editing book or character name
  add context menus to edit and delete
  make names in color functions more general for any model
  make focused field change with tapping intro in forms

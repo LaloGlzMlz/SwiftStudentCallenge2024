@@ -53,15 +53,6 @@ struct AddConnectionSheet: View {
                             .padding(.trailing, 50)
                     }
                 }
-                
-//                Section {
-//                    Text("The character ") +
-//                    Text("\(selectedOption) ").bold() +
-//                    Text("is ") +
-//                    Text("\(character.name)").bold() +
-//                    Text("'s ") +
-//                    Text("\(isTo.lowercased())").bold()
-//                }
             }
             .onAppear {
                 filteredCharacters = characters.filter{$0.book == book.title}

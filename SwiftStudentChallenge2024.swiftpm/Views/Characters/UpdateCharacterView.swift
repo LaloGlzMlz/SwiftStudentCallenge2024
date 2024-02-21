@@ -55,18 +55,6 @@ struct UpdateCharacterView: View {
                       Text("Icon")
                             .padding(.trailing)
                     }
-                    
-//                    Button(action: {
-//                        isPresented.toggle()
-//                    }) {
-//                        Image(systemName: character.icon)
-//                            .font(.title) // Adjust the font size if needed
-//                            .sheet(isPresented: $isPresented, content: {
-//                                SymbolsPicker(selection: $character.icon, title: "Pick a symbol", autoDismiss: true)
-//                            })
-//                            .foregroundStyle(Color.black)
-//                            .padding()
-//                    }
                 }
             }
             .navigationTitle("Editing \(character.name)")
