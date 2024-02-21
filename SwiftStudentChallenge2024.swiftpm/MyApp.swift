@@ -15,12 +15,11 @@ struct MyApp: App {
 /*
  To do:
  
- not let characters of same name be created to avoid problem with bidirecctional connections
+ not let characters of same name be created to avoid problem with bidirectional connections
  add context menus to edit and delete
  make names in color functions more general for any model
  make focused field change with tapping intro in forms
  add main character field to display main characters before others
- bidirectional connections with textfield to specify what thisCharacter is to relatedCharacter
  when parent name is changed, child are not deleted but trash is generated, leaving empty card
  
 */

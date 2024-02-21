@@ -21,6 +21,10 @@ struct AddConnectionSheet: View {
     @State private var selectedOption = ""
     @State private var filteredCharacters: [BookCharacter] = []
     
+    @State private var bidireccionalConnectionToggle = true
+    @State private var otherSideCharacter: [BookCharacter] = []
+    @State private var otherWayConnectionType: String = ""
+    
     let character: BookCharacter
     let book: Book
     
@@ -29,28 +33,50 @@ struct AddConnectionSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    Text("The character ") +
-                    Text("\(selectedOption) ").bold() +
-                    Text("is ") +
-                    Text("\(character.name)").bold() +
-                    Text("'s ") +
-                    Text("\(isTo.lowercased())").bold()
-                }
-                
-                Section {
+                    
                     Picker("Select a character that is related to \(character.name)", selection: $selectedOption) {
                         ForEach(filteredCharacters) { character in
                             Text(character.name).tag(character.name)
                         }
                     }
                     .pickerStyle(.menu)
+                    .onChange(of: selectedOption) {
+                        otherSideCharacter = filteredCharacters.filter{$0.name == selectedOption}
+                    }
+                    
+                    Toggle("Two-way connection?", isOn: $bidireccionalConnectionToggle)
                     
                     LabeledContent {
-                      TextField("Connection type", text: $isTo)
+                        TextField("Connection type", text: $isTo)
                             .textInputAutocapitalization(.sentences)
                     } label: {
-                      Text("Connection type")
+                        Text("\(selectedOption) is \(character.name)'s")
                             .padding(.trailing, 50)
+                    }
+                    
+                    if bidireccionalConnectionToggle {
+                        
+                        LabeledContent {
+                            TextField("Other way", text: $otherWayConnectionType)
+                                .textInputAutocapitalization(.sentences)
+                        } label: {
+                            Text("\(character.name) is \(selectedOption)'s")
+                                .padding(.trailing, 50)
+                        }
+                        
+                        Section {
+                            Text("\(character.name) ").bold() +
+                            Text("is ") +
+                            Text("\(selectedOption)").bold() +
+                            Text("'s ") +
+                            Text("\(otherWayConnectionType)").bold() +
+                            Text(", and ") +
+                            Text("\(selectedOption) ").bold() +
+                            Text("is ") +
+                            Text("\(character.name)").bold() +
+                            Text("'s ") +
+                            Text("\(isTo.lowercased())").bold()
+                        }
                     }
                 }
             }
@@ -72,7 +98,13 @@ struct AddConnectionSheet: View {
                             isTo: isTo,
                             thisCharacter: character.name
                         )
+                        let otherWayConnection = Connection (
+                            relatedCharacter: character.name,
+                            isTo: otherWayConnectionType,
+                            thisCharacter: otherSideCharacter[0].name
+                        )
                         context.insert(connection)
+                        context.insert(otherWayConnection)
                         dismiss()
                     }
                 }
