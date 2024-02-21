@@ -12,7 +12,10 @@ import Foundation
 struct UpdateBookView: View {
     @Environment(\.dismiss) private var dismiss
     
+    @Query(sort: \BookCharacter.name) var characters: [BookCharacter]
+    
     @State private var isPresented = false
+    @State private var filteredCharacters: [BookCharacter] = []
     
     @Bindable var book: Book
     
@@ -25,7 +28,7 @@ struct UpdateBookView: View {
                         TextField("Book title", text: $book.title)
                             .textInputAutocapitalization(.words)
                     } label: {
-                      Text("Book title")
+                        Text("Book title")
                             .padding(.trailing, 50)
                     }
                     
@@ -33,7 +36,7 @@ struct UpdateBookView: View {
                         TextField("Author", text: $book.author)
                             .textInputAutocapitalization(.words)
                     } label: {
-                      Text("Author")
+                        Text("Author")
                             .padding(.trailing, 70)
                     }
                 }
@@ -53,7 +56,7 @@ struct UpdateBookView: View {
                         .padding(.top, 5)
                         .padding(.bottom, 5)
                     } label: {
-                      Text("Icon")
+                        Text("Icon")
                             .padding(.trailing)
                     }
                 }
@@ -62,9 +65,17 @@ struct UpdateBookView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
+                    Button("Done") {
+                        for filteredCharacter in filteredCharacters {
+                            filteredCharacter.book = book.title
+                        }
+                        dismiss()
+                    }
                 }
             }
+        }
+        .onAppear {
+            filteredCharacters = characters.filter{$0.book == book.title}
         }
         
     }

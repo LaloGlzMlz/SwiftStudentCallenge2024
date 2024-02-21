@@ -1,10 +1,3 @@
-//
-//  SwiftUIView.swift
-//
-//
-//  Created by Alessio Rubicini on 22/10/23.
-//
-
 import SwiftUI
 
 struct SymbolIcon: View {
