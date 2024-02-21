@@ -28,7 +28,7 @@ struct AddCharacterSheet: View {
             Form {
                 Section {
                     LabeledContent {
-                      TextField("BookCharacter name", text: $name)
+                      TextField("Character name", text: $name)
                             .textInputAutocapitalization(.words)
                     } label: {
                       Text("Name")
@@ -36,7 +36,7 @@ struct AddCharacterSheet: View {
                     }
                     
                     LabeledContent {
-                      TextField("BookCharacter description", text: $desc)
+                      TextField("Character description", text: $desc)
                             .textInputAutocapitalization(.sentences)
                     } label: {
                       Text("Description")

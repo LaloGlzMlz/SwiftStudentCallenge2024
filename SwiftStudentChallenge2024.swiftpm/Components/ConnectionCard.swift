@@ -15,23 +15,10 @@ struct ConnectionCard: View {
     
     var body: some View {
         ZStack {
-            
-//            RoundedRectangle(cornerRadius: 20)
-//                .frame(height: 150)
-//                .foregroundStyle(LinearGradient(
-//                    gradient: Gradient(stops: [
-//                        .init(color: convertStringToColor(bookColorString: character.characterColor), location: 0.0),
-//                        .init(color: Color.black, location: 1.0)
-//                    ]),
-//                    startPoint: .center,
-//                    endPoint: .zero
-//                ))
-//                .offset(x: 5, y: 5)
-//                .opacity(0.2)
             RoundedRectangle(cornerRadius: 25)
                     .frame(height: 150)
-                    .foregroundColor(Color.black.opacity(0.15)) // Semi-transparent color
-                    .offset(x: 10, y: 10) // Offset to create shadow effect
+                    .foregroundColor(Color.black.opacity(0.15))
+                    .offset(x: 10, y: 10)
             
             RoundedRectangle(cornerRadius: 20)
                 .frame(height: 150)
@@ -53,15 +40,16 @@ struct ConnectionCard: View {
                     Text(character.name)
                         .lineLimit(1)
                         .foregroundStyle(.white)
-                        .font(.system(size: 26))
+                        .font(.title2)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .bold()
-                        .padding()
+                        .padding(.leading, 15)
                     Text(connection.isTo)
+                        .lineLimit(1)
                         .foregroundStyle(.white)
-                        .font(.system(size: 20))
+                        .font(.title3)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
+                        .padding(.leading, 15)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)

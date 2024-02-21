@@ -15,8 +15,6 @@ struct MyApp: App {
 /*
  To do:
  
- change Character model name and every reference
- cascade modification when editing book or character name
  add context menus to edit and delete
  make names in color functions more general for any model
  make focused field change with tapping intro in forms
