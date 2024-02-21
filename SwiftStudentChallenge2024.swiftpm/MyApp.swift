@@ -8,13 +8,14 @@ struct MyApp: App {
         WindowGroup {
             BooksView()
         }
-        .modelContainer(for: [Book.self, Character.self, Connection.self])
+        .modelContainer(for: [Book.self, BookCharacter.self, Connection.self])
     }
 }
 
 /*
  To do:
  
+ change Character model name and every reference
  cascade modification when editing book or character name
  add context menus to edit and delete
  make names in color functions more general for any model

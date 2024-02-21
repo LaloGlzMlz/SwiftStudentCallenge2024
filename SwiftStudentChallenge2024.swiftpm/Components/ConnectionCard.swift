@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ConnectionCard: View {
     let book: Book
-    let character: Character // character to send: connected character
+    let character: BookCharacter // character to send: connected character
     let connection: Connection
     
     var body: some View {

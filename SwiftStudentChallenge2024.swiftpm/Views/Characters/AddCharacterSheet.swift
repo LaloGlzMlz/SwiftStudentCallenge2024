@@ -28,7 +28,7 @@ struct AddCharacterSheet: View {
             Form {
                 Section {
                     LabeledContent {
-                      TextField("Character name", text: $name)
+                      TextField("BookCharacter name", text: $name)
                             .textInputAutocapitalization(.words)
                     } label: {
                       Text("Name")
@@ -36,7 +36,7 @@ struct AddCharacterSheet: View {
                     }
                     
                     LabeledContent {
-                      TextField("Character description", text: $desc)
+                      TextField("BookCharacter description", text: $desc)
                             .textInputAutocapitalization(.sentences)
                     } label: {
                       Text("Description")
@@ -83,7 +83,7 @@ struct AddCharacterSheet: View {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
                         self.characterColorString = self.convertColorToString(bookColor:characterColor)
-                        let character = Character (
+                        let character = BookCharacter (
                             name: name,
                             desc: desc,
                             book: book.title,

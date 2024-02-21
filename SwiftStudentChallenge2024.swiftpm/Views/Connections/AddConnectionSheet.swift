@@ -14,14 +14,14 @@ struct AddConnectionSheet: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     
-    @Query(sort: \Character.name) var characters: [Character]
+    @Query(sort: \BookCharacter.name) var characters: [BookCharacter]
     
     @State private var relatedCharacter: String = ""
     @State private var isTo: String = ""
     @State private var selectedOption = ""
-    @State private var filteredCharacters: [Character] = []
+    @State private var filteredCharacters: [BookCharacter] = []
     
-    let character: Character
+    let character: BookCharacter
     let book: Book
     
     
@@ -66,7 +66,7 @@ struct AddConnectionSheet: View {
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
-                        let connection = Connection(
+                        let connection = Connection (
                             relatedCharacter: selectedOption,
                             isTo: isTo,
                             thisCharacter: character.name

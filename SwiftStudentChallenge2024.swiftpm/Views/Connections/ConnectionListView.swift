@@ -16,7 +16,7 @@ struct ConnectionListView: View {
     @State private var connectionToEdit: Connection?
     @State private var isEditing = false
     
-    let character: Character
+    let character: BookCharacter
     
     var body: some View {
         List {

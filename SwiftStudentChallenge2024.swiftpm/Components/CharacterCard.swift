@@ -9,7 +9,7 @@ import SwiftUI
 @available(iOS 17, *)
 
 struct CharacterCard: View {
-    let character: Character
+    let character: BookCharacter
     
     var body: some View {
         ZStack {

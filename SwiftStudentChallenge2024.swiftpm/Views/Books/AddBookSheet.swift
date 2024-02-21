@@ -80,7 +80,7 @@ struct AddBookSheet: View {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
                         self.bookColorString = self.convertColorToString(bookColor:bookColor)
-                        let book = Book(
+                        let book = Book (
                             title: title,
                             author: author,
                             bookColor: bookColorString,

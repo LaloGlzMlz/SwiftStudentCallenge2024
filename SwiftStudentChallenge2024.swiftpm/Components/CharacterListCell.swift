@@ -10,7 +10,7 @@ import SwiftData
 @available(iOS 17, *)
 
 struct CharacterListCell: View {
-    let character: Character
+    let character: BookCharacter
     
     var body: some View {
         HStack {

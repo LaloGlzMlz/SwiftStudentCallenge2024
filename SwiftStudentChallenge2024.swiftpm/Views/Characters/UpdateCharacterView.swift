@@ -14,14 +14,14 @@ struct UpdateCharacterView: View {
     
     @State private var isPresented = false
     
-    @Bindable var character: Character
+    @Bindable var character: BookCharacter
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
                     LabeledContent {
-                        TextField("Character name", text: $character.name)
+                        TextField("BookCharacter name", text: $character.name)
                             .textInputAutocapitalization(.words)
                     } label: {
                       Text("Name")
@@ -29,7 +29,7 @@ struct UpdateCharacterView: View {
                     }
                     
                     LabeledContent {
-                        TextField("Character description", text: $character.desc)
+                        TextField("BookCharacter description", text: $character.desc)
                             .textInputAutocapitalization(.sentences)
                     } label: {
                       Text("Description")

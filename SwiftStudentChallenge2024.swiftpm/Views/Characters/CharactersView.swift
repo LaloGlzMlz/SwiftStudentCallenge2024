@@ -12,11 +12,11 @@ import SwiftData
 struct CharactersView: View {
     @Environment(\.modelContext) private var context
     
-    @Query(sort: \Character.name) var characters: [Character]
+    @Query(sort: \BookCharacter.name) var characters: [BookCharacter]
     
     @State private var showingAddCharacterSheet = false
     @State private var showingCharacterListSheet = false
-    @State private var filteredCharacters: [Character] = []
+    @State private var filteredCharacters: [BookCharacter] = []
     
     let book: Book
     

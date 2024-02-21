@@ -12,8 +12,8 @@ import SwiftData
 struct CharacterListView: View {
     @Environment(\.modelContext) private var context
     
-    @Query(sort: \Character.name) var characters: [Character]
-    @State private var characterToEdit: Character?
+    @Query(sort: \BookCharacter.name) var characters: [BookCharacter]
+    @State private var characterToEdit: BookCharacter?
     @State private var isEditing = false
     
     let book: Book
