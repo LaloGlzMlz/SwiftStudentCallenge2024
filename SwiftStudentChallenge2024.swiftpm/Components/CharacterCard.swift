@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-@available(iOS 17, *)
+
 
 struct CharacterCard: View {
     let character: BookCharacter

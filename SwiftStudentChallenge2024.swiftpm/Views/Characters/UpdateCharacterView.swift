@@ -12,7 +12,10 @@ import Foundation
 struct UpdateCharacterView: View {
     @Environment(\.dismiss) private var dismiss
     
+    @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
+    
     @State private var isPresented = false
+    @State private var filteredConnections: [Connection] = []
     
     @Bindable var character: BookCharacter
     
@@ -61,9 +64,17 @@ struct UpdateCharacterView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
+                    Button("Done") { 
+                        for filteredConnection in filteredConnections {
+                            filteredConnection.thisCharacter = character.name
+                        }
+                        dismiss()
+                    }
                 }
             }
+        }
+        .onAppear {
+            filteredConnections = connections.filter{$0.thisCharacter == character.name}
         }
     }
 }

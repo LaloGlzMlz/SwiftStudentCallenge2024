@@ -77,7 +77,6 @@ struct UpdateBookView: View {
         .onAppear {
             filteredCharacters = characters.filter{$0.book == book.title}
         }
-        
     }
     
     func convertColorToString(bookColor: Color) -> String{

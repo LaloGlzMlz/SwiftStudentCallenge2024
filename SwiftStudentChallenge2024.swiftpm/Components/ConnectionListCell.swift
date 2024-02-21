@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct ConnectionListCell: View {
     let connection: Connection

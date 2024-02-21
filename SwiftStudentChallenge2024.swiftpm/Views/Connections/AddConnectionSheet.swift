@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 import Foundation
-@available(iOS 17, *)
+
 
 struct AddConnectionSheet: View {
     @Environment(\.modelContext) private var context

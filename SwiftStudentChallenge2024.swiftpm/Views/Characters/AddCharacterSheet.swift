@@ -9,7 +9,7 @@
 import SwiftUI
 import SwiftData
 import Foundation
-@available(iOS 17, *)
+
 
 struct AddCharacterSheet: View {
     @Environment(\.modelContext) private var context

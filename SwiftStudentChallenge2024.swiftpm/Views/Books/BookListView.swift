@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct BookListView: View {
     @Environment(\.modelContext) private var context

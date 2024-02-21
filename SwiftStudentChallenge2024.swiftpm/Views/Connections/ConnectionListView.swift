@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct ConnectionListView: View {
     @Environment(\.modelContext) private var context

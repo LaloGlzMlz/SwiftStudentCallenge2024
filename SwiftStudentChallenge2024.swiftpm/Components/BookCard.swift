@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-//@available(iOS 17, *)
+//
 
 struct BookCard: View {
     let book: Book

@@ -1,6 +1,6 @@
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 @main
 struct MyApp: App {
