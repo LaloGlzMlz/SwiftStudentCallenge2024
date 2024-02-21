@@ -55,6 +55,7 @@ struct AddConnectionSheet: View {
                 }
             }
             .onAppear {
+                // Obtain only characters who's book equals the book tapped in the beginning
                 filteredCharacters = characters.filter{$0.book == book.title}
                 selectedOption = filteredCharacters[0].name
             }
