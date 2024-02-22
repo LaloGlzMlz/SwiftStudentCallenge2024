@@ -15,7 +15,8 @@ struct UpdateCharacterView: View {
     @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
     
     @State private var isPresented = false
-    @State private var filteredConnections: [Connection] = []
+    @State private var thisCharFilteredConnections: [Connection] = []
+    @State private var relatedCharsFilteredConnections: [Connection] = []
     
     @Bindable var character: BookCharacter
     
@@ -58,6 +59,9 @@ struct UpdateCharacterView: View {
                       Text("Icon")
                             .padding(.trailing)
                     }
+//                    ForEach(filteredConnections) { filtered in
+//                        Text(filtered.relatedCharacter)
+//                    }
                 }
             }
             .navigationTitle("Editing \(character.name)")
@@ -65,8 +69,12 @@ struct UpdateCharacterView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Done") { 
-                        for filteredConnection in filteredConnections {
-                            filteredConnection.thisCharacter = character.name
+                        for thisCharFilteredConnection in thisCharFilteredConnections {
+                            thisCharFilteredConnection.thisCharacter = character.name
+                            
+                        }
+                        for relatedCharFilteredConnection in relatedCharsFilteredConnections {
+                            relatedCharFilteredConnection.relatedCharacter = character.name
                         }
                         dismiss()
                     }
@@ -74,7 +82,8 @@ struct UpdateCharacterView: View {
             }
         }
         .onAppear {
-            filteredConnections = connections.filter{$0.thisCharacter == character.name}
+            thisCharFilteredConnections = connections.filter{$0.thisCharacter == character.name}
+            relatedCharsFilteredConnections = connections.filter{$0.relatedCharacter == character.name}
         }
     }
 }

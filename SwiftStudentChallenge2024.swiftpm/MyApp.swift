@@ -20,6 +20,5 @@ struct MyApp: App {
  make names in color functions more general for any model
  make focused field change with tapping intro in forms
  add main character field to display main characters before others
- when parent name is changed, child are not deleted but trash is generated, leaving empty card
  
 */

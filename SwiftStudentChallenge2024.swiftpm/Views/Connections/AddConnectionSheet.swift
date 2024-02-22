@@ -63,21 +63,20 @@ struct AddConnectionSheet: View {
                             Text("\(character.name) is \(selectedOption)'s")
                                 .padding(.trailing, 50)
                         }
-                        
-                        Section {
-                            Text("\(character.name) ").bold() +
-                            Text("is ") +
-                            Text("\(selectedOption)").bold() +
-                            Text("'s ") +
-                            Text("\(otherWayConnectionType)").bold() +
-                            Text(", and ") +
-                            Text("\(selectedOption) ").bold() +
-                            Text("is ") +
-                            Text("\(character.name)").bold() +
-                            Text("'s ") +
-                            Text("\(isTo.lowercased())").bold()
-                        }
                     }
+                }
+                Section {
+                    Text("\(character.name) ").bold() +
+                    Text("is ") +
+                    Text("\(selectedOption)").bold() +
+                    Text("'s ") +
+                    Text("\(otherWayConnectionType)").bold() +
+                    Text(", and ") +
+                    Text("\(selectedOption) ").bold() +
+                    Text("is ") +
+                    Text("\(character.name)").bold() +
+                    Text("'s ") +
+                    Text("\(isTo.lowercased())").bold()
                 }
             }
             .onAppear {
