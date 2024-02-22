@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct ConnectionListView: View {
     @Environment(\.modelContext) private var context
@@ -16,11 +16,11 @@ struct ConnectionListView: View {
     @State private var connectionToEdit: Connection?
     @State private var isEditing = false
     
-    let character: Character
+    let character: BookCharacter
     
     var body: some View {
         List {
-            Section("Swipe left to delete connections") {
+            Section("Swipe left to edit or delete connections") {
                 ForEach(connections) { connection in
                     if character.name == connection.thisCharacter { // comment this condition to show all
                         ConnectionListCell(connection: connection)

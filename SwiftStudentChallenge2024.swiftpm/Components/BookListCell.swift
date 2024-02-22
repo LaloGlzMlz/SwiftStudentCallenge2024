@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
 
 struct BookListCell: View {
     let book: Book

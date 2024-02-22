@@ -1,6 +1,6 @@
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 @main
 struct MyApp: App {
@@ -8,18 +8,17 @@ struct MyApp: App {
         WindowGroup {
             BooksView()
         }
-        .modelContainer(for: [Book.self, Character.self, Connection.self])
+        .modelContainer(for: [Book.self, BookCharacter.self, Connection.self])
     }
 }
 
 /*
  To do:
  
+ not let characters of same name be created to avoid problem with bidirectional connections
  add context menus to edit and delete
- maked labeledcontent every textfield
  make names in color functions more general for any model
- make focused field change with tapping intro
+ make focused field change with tapping intro in forms
  add main character field to display main characters before others
- bidirectional connections with textfield to specify what thisCharacter is to relatedCharacter
  
 */

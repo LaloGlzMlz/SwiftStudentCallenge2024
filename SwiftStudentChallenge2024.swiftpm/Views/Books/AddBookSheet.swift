@@ -1,53 +1,50 @@
 //
-//  AddCharacterSheet.swift
+//  AddBookSheet.swift
 //  SwiftStudentChallenge2024
 //
-//  Created by Eduardo Gonzalez Melgoza on 14/02/24.
+//  Created by Eduardo Gonzalez Melgoza on 08/02/24.
 //
-
 
 import SwiftUI
 import SwiftData
 import Foundation
-@available(iOS 17, *)
 
-struct AddCharacterSheet: View {
+struct AddBookSheet: View {
     @Environment(\.modelContext) private var context
     @Environment(\.dismiss) private var dismiss
     
-    @State private var name: String = ""
-    @State private var desc: String = ""
-    @State private var characterColor = Color.blue
-    @State private var characterColorString = ""
-    @State private var icon = "person.fill"
+    @State private var title: String = ""
+    @State private var author: String = ""
+    @State private var bookColor = Color.blue
+    @State private var bookColorString = ""
+    @State private var icon = "text.book.closed.fill"
     @State private var isPresented = false
-    let book: Book
     
     var body: some View {
         NavigationStack {
             Form {
                 Section {
                     LabeledContent {
-                      TextField("Character name", text: $name)
+                      TextField("Book title", text: $title)
                             .textInputAutocapitalization(.words)
                     } label: {
-                      Text("Name")
-                            .padding(.trailing, 94)
+                      Text("Book title")
+                            .padding(.trailing, 50)
                     }
                     
                     LabeledContent {
-                      TextField("Character description", text: $desc)
-                            .textInputAutocapitalization(.sentences)
+                      TextField("Author", text: $author)
+                            .textInputAutocapitalization(.words)
                     } label: {
-                      Text("Description")
-                            .padding(.trailing, 50)
+                      Text("Author")
+                            .padding(.trailing, 70)
                     }
                 }
                 
                 Section {
                     ColorPicker(
                         "Color (color cannot be changed later)",
-                        selection: $characterColor,
+                        selection: $bookColor,
                         supportsOpacity: false
                     )
                     .padding(.top, 5)
@@ -74,7 +71,7 @@ struct AddCharacterSheet: View {
                     }
                 }
             }
-            .navigationTitle("New character")
+            .navigationTitle("New book")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
@@ -82,15 +79,15 @@ struct AddCharacterSheet: View {
                 }
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
-                        self.characterColorString = self.convertColorToString(bookColor:characterColor)
-                        let character = Character (
-                            name: name,
-                            desc: desc,
-                            book: book.title,
-                            characterColor: characterColorString,
-                            icon: icon
+                        self.bookColorString = self.convertColorToString(bookColor:bookColor)
+                        let book = Book (
+                            title: title,
+                            author: author,
+                            bookColor: bookColorString,
+                            icon: icon,
+                            dateCreated: Date()
                         )
-                        context.insert(character)
+                        context.insert(book)
                         dismiss()
                     }
                 }

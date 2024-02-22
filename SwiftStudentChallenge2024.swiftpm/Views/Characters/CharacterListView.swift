@@ -7,20 +7,20 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct CharacterListView: View {
     @Environment(\.modelContext) private var context
     
-    @Query(sort: \Character.name) var characters: [Character]
-    @State private var characterToEdit: Character?
+    @Query(sort: \BookCharacter.name) var characters: [BookCharacter]
+    @State private var characterToEdit: BookCharacter?
     @State private var isEditing = false
     
     let book: Book
     
     var body: some View {
         List {
-            Section("Swipe left to delete connections") {
+            Section("Swipe left to edit or delete characters") {
                 ForEach(characters) { character in
                     if character.book == book.title { // comment this condition to show all
                         CharacterListCell(character: character)

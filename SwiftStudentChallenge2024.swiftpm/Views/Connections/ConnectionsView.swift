@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct ConnectionsView: View {
     @Environment(\.modelContext) private var context
@@ -16,9 +16,9 @@ struct ConnectionsView: View {
     @State private var showingConnectionListSheet = false
     
     @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
-    @Query(sort: \Character.name) var allCharacters: [Character]
+    @Query(sort: \BookCharacter.name) var allCharacters: [BookCharacter]
     
-    let character: Character
+    let character: BookCharacter
     let book: Book
     
     var body: some View {
@@ -74,8 +74,4 @@ struct ConnectionsView: View {
             }
         }
     }
-    
-    //    func filterConnections() {
-    //
-    //    }
 }

@@ -12,9 +12,13 @@ import Foundation
 struct UpdateCharacterView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @State private var isPresented = false
+    @Query(sort: \Connection.relatedCharacter) var connections: [Connection]
     
-    @Bindable var character: Character
+    @State private var isPresented = false
+    @State private var thisCharFilteredConnections: [Connection] = []
+    @State private var relatedCharsFilteredConnections: [Connection] = []
+    
+    @Bindable var character: BookCharacter
     
     var body: some View {
         NavigationStack {
@@ -55,17 +59,8 @@ struct UpdateCharacterView: View {
                       Text("Icon")
                             .padding(.trailing)
                     }
-                    
-//                    Button(action: {
-//                        isPresented.toggle()
-//                    }) {
-//                        Image(systemName: character.icon)
-//                            .font(.title) // Adjust the font size if needed
-//                            .sheet(isPresented: $isPresented, content: {
-//                                SymbolsPicker(selection: $character.icon, title: "Pick a symbol", autoDismiss: true)
-//                            })
-//                            .foregroundStyle(Color.black)
-//                            .padding()
+//                    ForEach(filteredConnections) { filtered in
+//                        Text(filtered.relatedCharacter)
 //                    }
                 }
             }
@@ -73,9 +68,22 @@ struct UpdateCharacterView: View {
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
+                    Button("Done") { 
+                        for thisCharFilteredConnection in thisCharFilteredConnections {
+                            thisCharFilteredConnection.thisCharacter = character.name
+                            
+                        }
+                        for relatedCharFilteredConnection in relatedCharsFilteredConnections {
+                            relatedCharFilteredConnection.relatedCharacter = character.name
+                        }
+                        dismiss()
+                    }
                 }
             }
+        }
+        .onAppear {
+            thisCharFilteredConnections = connections.filter{$0.thisCharacter == character.name}
+            relatedCharsFilteredConnections = connections.filter{$0.relatedCharacter == character.name}
         }
     }
 }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SwiftData
-@available(iOS 17, *)
+
 
 struct BookListView: View {
     @Environment(\.modelContext) private var context
@@ -18,7 +18,7 @@ struct BookListView: View {
     
     var body: some View {
         List {
-            Section("Swipe left to edit or delete connections") {
+            Section("Swipe left to edit or delete books") {
                 ForEach(books) { book in
                     BookListCell(book: book)
                         .swipeActions {
