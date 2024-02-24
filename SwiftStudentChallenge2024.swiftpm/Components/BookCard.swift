@@ -15,6 +15,7 @@ struct BookCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
+                .shadow(radius: 2)
                 .frame(height: 150)
                 .foregroundStyle(.gray)
                 .offset(x: 15, y: 15)

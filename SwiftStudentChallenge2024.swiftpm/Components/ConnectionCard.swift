@@ -15,12 +15,13 @@ struct ConnectionCard: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 25)
-                    .frame(height: 150)
-                    .foregroundColor(Color.black.opacity(0.15))
-                    .offset(x: 10, y: 10)
+//            RoundedRectangle(cornerRadius: 25)
+//                    .frame(height: 150)
+//                    .foregroundColor(Color.black.opacity(0.15))
+//                    .offset(x: 10, y: 10)
             
             RoundedRectangle(cornerRadius: 20)
+                .shadow(radius: 3)
                 .frame(height: 150)
                 .foregroundStyle(LinearGradient(
                     gradient: Gradient(stops: [

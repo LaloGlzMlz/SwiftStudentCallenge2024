@@ -42,6 +42,7 @@ struct AddConnectionSheet: View {
                     .pickerStyle(.menu)
                     .onChange(of: selectedOption) {
                         otherSideCharacter = filteredCharacters.filter{$0.name == selectedOption}
+                        print(otherSideCharacter)
                     }
                     
                     Toggle("Two-way connection?", isOn: $bidireccionalConnectionToggle)

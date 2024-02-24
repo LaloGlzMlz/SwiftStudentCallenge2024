@@ -15,6 +15,7 @@ struct CharacterCard: View {
         ZStack {
             
             RoundedRectangle(cornerRadius: 20)
+                .shadow(radius: 2)
                 .frame(height: 150)
                 .foregroundStyle(.gray)
                 .offset(x: 10, y: 10)
