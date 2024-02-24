@@ -42,13 +42,12 @@ struct AddConnectionSheet: View {
                     .pickerStyle(.menu)
                     .onChange(of: selectedOption) {
                         otherSideCharacter = filteredCharacters.filter{$0.name == selectedOption}
-                        print(otherSideCharacter)
                     }
                     
                     Toggle("Two-way connection?", isOn: $bidireccionalConnectionToggle)
                     
                     LabeledContent {
-                        TextField("Connection type", text: $isTo)
+                        TextField("How are they related?", text: $isTo)
                             .textInputAutocapitalization(.sentences)
                     } label: {
                         Text("\(selectedOption) is \(character.name)'s")
@@ -58,7 +57,7 @@ struct AddConnectionSheet: View {
                     if bidireccionalConnectionToggle {
                         
                         LabeledContent {
-                            TextField("Other way", text: $otherWayConnectionType)
+                            TextField("How are they related?", text: $otherWayConnectionType)
                                 .textInputAutocapitalization(.sentences)
                         } label: {
                             Text("\(character.name) is \(selectedOption)'s")
@@ -67,19 +66,19 @@ struct AddConnectionSheet: View {
                     }
 
                 }
-                Section {
-                    Text("\(character.name) ").bold() +
-                    Text("is ") +
-                    Text("\(selectedOption)").bold() +
-                    Text("'s ") +
-                    Text("\(otherWayConnectionType)").bold() +
-                    Text(", and ") +
-                    Text("\(selectedOption) ").bold() +
-                    Text("is ") +
-                    Text("\(character.name)").bold() +
-                    Text("'s ") +
-                    Text("\(isTo.lowercased())").bold()
-                }
+//                Section {
+//                    Text("\(character.name) ").bold() +
+//                    Text("is ") +
+//                    Text("\(selectedOption)").bold() +
+//                    Text("'s ") +
+//                    Text("\(otherWayConnectionType)").bold() +
+//                    Text(", and ") +
+//                    Text("\(selectedOption) ").bold() +
+//                    Text("is ") +
+//                    Text("\(character.name)").bold() +
+//                    Text("'s ") +
+//                    Text("\(isTo.lowercased())").bold()
+//                }
             }
             .onAppear {
                 // Obtain only characters who's book equals the book tapped in the beginning
