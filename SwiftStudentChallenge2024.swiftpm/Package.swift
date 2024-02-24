@@ -8,19 +8,19 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "SwiftStudentChallenge2024",
+    name: "Charactree",
     platforms: [
         .iOS("17.0")
     ],
     products: [
         .iOSApplication(
-            name: "SwiftStudentChallenge2024",
+            name: "Charactree",
             targets: ["AppModule"],
             bundleIdentifier: "com.lalo.SwiftStudentChallenge2024",
             teamIdentifier: "8FW56V9S55",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .box),
+            appIcon: .asset("AppIcon"),
             accentColor: .presetColor(.blue),
             supportedDeviceFamilies: [
                 .pad,
