@@ -52,7 +52,7 @@ struct AddConnectionSheet: View {
                             .textInputAutocapitalization(.sentences)
                     } label: {
                         Text("\(selectedOption) is \(character.name)'s")
-                            .padding(.trailing, 50)
+                            .padding(.trailing, 70)
                     }
                     
                     if bidireccionalConnectionToggle {
@@ -65,6 +65,7 @@ struct AddConnectionSheet: View {
                                 .padding(.trailing, 50)
                         }
                     }
+
                 }
                 Section {
                     Text("\(character.name) ").bold() +
@@ -104,7 +105,11 @@ struct AddConnectionSheet: View {
                             thisCharacter: otherSideCharacter[0].name
                         )
                         context.insert(connection)
-                        context.insert(otherWayConnection)
+                        if !bidireccionalConnectionToggle || otherWayConnectionType == "" {
+                            // pass
+                        } else {
+                            context.insert(otherWayConnection)
+                        }
                         dismiss()
                     }
                 }
